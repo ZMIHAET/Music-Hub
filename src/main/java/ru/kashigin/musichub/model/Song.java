@@ -18,7 +18,7 @@ import java.util.List;
 public class Song {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long song_id;
+    private Long songId;
 
     @NotEmpty(message = "Name should not be empty")
     @Size(min = 2, max = 100, message = "Name of song should be between 2 and 100 characters")

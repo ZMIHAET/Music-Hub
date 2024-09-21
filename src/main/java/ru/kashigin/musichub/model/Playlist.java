@@ -17,7 +17,7 @@ import java.util.List;
 public class Playlist {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long playlist_id;
+    private Long playlistId;
 
     @NotEmpty(message = "Playlist title should not be empty")
     @Size(min = 2, max = 100, message = "Playlist title should be between 2 and 100 characters")

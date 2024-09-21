@@ -17,7 +17,7 @@ import java.util.List;
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long genre_id;
+    private Long genreId;
 
     @NotEmpty(message = "Name of genre should not be empty")
     @Size(min = 2, max = 100, message = "Name of genre should be between 2 and 100 characters")

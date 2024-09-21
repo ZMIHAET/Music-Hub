@@ -18,7 +18,7 @@ import java.util.List;
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long album_id;
+    private Long albumId;
 
     @NotEmpty(message = "Album title should not be empty")
     @Size(min = 2, max = 100, message = "Album title should be between 2 and 100 characters")

@@ -4,20 +4,20 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
+@Getter
+@Setter
+@RequiredArgsConstructor
+@ToString
 @Table(name = "album")
 public class Album {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "album_id")
     private Long albumId;
 
     @NotEmpty(message = "Album title should not be empty")
@@ -38,4 +38,8 @@ public class Album {
 
     @OneToMany(mappedBy = "album")
     private List<Song> songs;
+
+    public void setSongs(List<Song> songs) {
+        this.songs = songs;
+    }
 }

@@ -27,7 +27,8 @@
     <url/>
   </scm>
   <properties>
-    <java.version>22</java.version>
+      <maven.compiler.source>23</maven.compiler.source>
+      <maven.compiler.target>23</maven.compiler.target>
   </properties>
   <dependencies>
     <dependency>
@@ -70,7 +71,13 @@
       <artifactId>modelmapper</artifactId>
       <version>3.2.1</version>
     </dependency>
-
+    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
+    <dependency>
+      <groupId>org.testng</groupId>
+      <artifactId>testng</artifactId>
+      <version>7.10.2</version>
+      <scope>test</scope>
+    </dependency>
 
 
   </dependencies>
@@ -87,6 +94,16 @@
               <artifactId>lombok</artifactId>
             </exclude>
           </excludes>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.2.5</version>
+        <configuration>
+          <suiteXmlFiles>
+            <suiteXmlFile>src/test/resources/testng.xml</suiteXmlFile>
+          </suiteXmlFiles>
         </configuration>
       </plugin>
     </plugins>

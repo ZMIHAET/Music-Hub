@@ -27,6 +27,7 @@ public class Playlist {
 
     @ManyToOne
     @JoinColumn(name = "person_id", referencedColumnName = "person_id")
+    @ToString.Exclude
     private Person owner;
 
     @ManyToMany

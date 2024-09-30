@@ -1,5 +1,6 @@
 package ru.kashigin.musichub.service;
 
+import org.springframework.web.multipart.MultipartFile;
 import ru.kashigin.musichub.model.Artist;
 
 import java.util.List;

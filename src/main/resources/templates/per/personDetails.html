@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Person Details</title>
+</head>
+<body>
+<p><strong>Имя:</strong> <span th:text="${person.name}">Name</span></p>
+<p><strong>Email:</strong> <span th:text="${person.email}">Email</span></p>
+<p><strong>Пароль:</strong> <span th:text="${person.password}">Password</span></p>
+<p><strong>Дата регистрации:</strong> <span th:text="${person.registration}">Registration</span></p>
+
+<p>
+    <button th:onclick="|window.location.href='@{/people/{id}/edit(id=${person.personId})}'|">Редактировать</button>
+</p>
+
+<p>
+<form th:action="@{/people/{id}(id=${person.personId})}" method="post">
+    <input type="hidden" name="_method" value="delete"/>
+    <input type="submit" value="Удалить"/>
+</form>
+</p>
+
+
+<a href="/people">Назад к списку</a>
+</body>
+</html>

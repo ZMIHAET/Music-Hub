@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Artist Details</title>
+</head>
+<body>
+<p><strong>Имя:</strong> <span th:text="${artist.name}">Name</span></p>
+<p><strong>Биография:</strong> <span th:text="${artist.bio}">Bio</span></p>
+<p>
+    <strong>Фото:</strong>
+    <img th:src="@{${artist.photo}}" alt="Artist Photo" style="max-width: 100px; max-height: 100px;" onload="logImageSrc(this.src)" onerror="logImageSrc('Error loading image')"/>
+</p>
+
+<p>
+    <button th:onclick="|window.location.href='@{/artists/{id}/edit(id=${artist.artistId})}'|">Редактировать</button>
+</p>
+
+<p>
+<form th:action="@{/artists/{id}(id=${artist.artistId})}" method="post">
+    <input type="hidden" name="_method" value="delete"/>
+    <input type="submit" value="Удалить"/>
+</form>
+</p>
+
+<a href="/artists">Назад к списку</a>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Person</title>
+</head>
+<body>
+<h1>Добавить нового пользователя</h1>
+<form action="#" th:action="@{/people/new}" th:object="${person}" method="post">
+    <div>
+        <label for="name">Имя:</label>
+        <input type="text" id="name" th:field="*{name}" />
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+    </div>
+    <div>
+        <label for="email">Email:</label>
+        <input type="text" id="email" th:field="*{email}" />
+        <div style="color:red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email error</div>
+    </div>
+    <div>
+        <label for="password">Пароль:</label>
+        <input type="text" id="password" th:field="*{password}" />
+        <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Password error</div>
+    </div>
+    <div>
+        <input type="submit" value="Добавить"/>
+    </div>
+</form>
+<a href="/people">Назад к списку</a>
+</body>
+</html>

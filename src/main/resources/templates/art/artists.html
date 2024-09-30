@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Artists</title>
+</head>
+<body>
+<h1>Артисты</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Имя</th>
+        <th>Биография</th>
+        <th>Фото</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="artist : ${artists}">
+        <td><a th:href="@{/artists/{id}(id=${artist.artistId})}" th:text="${artist.name}">Name</a></td>
+        <td th:text="${artist.bio}">Bio</td>
+        <td>
+            <img th:src="@{${artist.photo}}" alt="Artist Photo" style="max-width: 100px; max-height: 100px;"/>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<hr/>
+<a href="/artists/new"/>Добавить артиста</a>
+<hr/>
+</body>
+</html>

@@ -6,6 +6,7 @@ import ru.kashigin.musichub.repository.PersonRepository;
 import ru.kashigin.musichub.service.PersonService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PersonServiceImpl implements PersonService {
@@ -32,9 +33,14 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person updatePerson(Long id, Person person) {
-        if (personRepository.findById(id).isPresent()){
-            personRepository.deleteById(id);
-            return personRepository.save(person);
+        Optional<Person> existingPersonOptional = personRepository.findById(id);
+        if (existingPersonOptional.isPresent()) {
+            Person existingPerson = existingPersonOptional.get();
+            existingPerson.setName(person.getName());
+            existingPerson.setEmail(person.getEmail());
+            existingPerson.setPassword(person.getPassword());
+
+            return personRepository.save(existingPerson);
         }
         return null;
     }

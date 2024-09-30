@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Artist</title>
+</head>
+<body>
+<h1>Добавить нового артиста</h1>
+<form action="#" th:action="@{/artists/new}" th:object="${artist}" method="post" enctype="multipart/form-data">
+    <div>
+        <label for="name">Имя:</label>
+        <input type="text" id="name" th:field="*{name}" />
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+    </div>
+    <div>
+        <label for="bio">Биография:</label>
+        <input type="text" id="bio" th:field="*{bio}" />
+    </div>
+    <div>
+        <label for="photo">Фото:</label>
+        <input type="file" id="photo" name="photo" />
+        <div style="color:red" th:if="${param.error == 'file_not_uploaded'}">Файл не выбран</div>
+        <div style="color:red" th:if="${param.error == 'file_upload_failed'}">Ошибка загрузки файла</div>
+    </div>
+    <div>
+        <input type="submit" value="Добавить"/>
+    </div>
+</form>
+<a href="/artists">Назад к списку</a>
+</body>
+</html>

@@ -6,6 +6,7 @@ import ru.kashigin.musichub.repository.SongRepository;
 import ru.kashigin.musichub.service.SongService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class SongServiceImpl implements SongService {
@@ -32,9 +33,13 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public Song updateSong(Long id, Song song) {
-        if (songRepository.findById(id).isPresent()){
-            songRepository.deleteById(id);
-            return songRepository.save(song);
+        Song existingSong = getSongById(id);
+        if (existingSong != null){
+            existingSong.setName(song.getName());
+            existingSong.setRelease(song.getRelease());
+            existingSong.setDuration(song.getDuration());
+
+            songRepository.save(existingSong);
         }
         return null;
     }

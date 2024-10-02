@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Songs</title>
+</head>
+<body>
+<h1>Песни</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Год релиза</th>
+        <th>Продолжительность</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="song : ${songs}">
+        <td><a th:href="@{/songs/{id}(id=${song.songId})}" th:text="${song.name}">Name</a></td>
+        <td th:text="${song.release}">Release</td>
+        <td th:text="${song.duration}">Duration</td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<hr/>
+<a href="/songs/new"/>Добавить песню</a>
+<hr/>
+</body>
+</html>

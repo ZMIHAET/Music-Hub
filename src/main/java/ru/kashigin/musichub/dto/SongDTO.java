@@ -26,11 +26,9 @@ public class SongDTO {
     @Size(min = 2, max = 100, message = "Name of song should be between 2 and 100 characters")
     private String name;
 
-    @NotEmpty(message = "Release year should not be empty")
     @Min(value = 0, message = "Release year should be greater than 0")
     private int release;
 
-    @NotEmpty(message = "Duration should not be empty")
     @Min(value = 0, message = "Duration should be greater than 0")
     private int duration;
 

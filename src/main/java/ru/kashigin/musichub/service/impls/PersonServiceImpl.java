@@ -33,9 +33,8 @@ public class PersonServiceImpl implements PersonService {
 
     @Override
     public Person updatePerson(Long id, Person person) {
-        Optional<Person> existingPersonOptional = personRepository.findById(id);
-        if (existingPersonOptional.isPresent()) {
-            Person existingPerson = existingPersonOptional.get();
+        Person existingPerson = getPersonById(id);
+        if (existingPerson != null) {
             existingPerson.setName(person.getName());
             existingPerson.setEmail(person.getEmail());
             existingPerson.setPassword(person.getPassword());

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Playlist</title>
+</head>
+<body>
+<h1>Добавить новый плейлист</h1>
+<form action="#" th:action="@{/playlists/new}" th:object="${playlist}" method="post">
+    <div>
+        <label for="name">Имя:</label>
+        <input type="text" id="name" th:field="*{name}" />
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+    </div>
+    <div>
+        <label for="description">Описание:</label>
+        <input type="text" id="description" th:field="*{description}" />
+    </div>
+    <div>
+        <input type="hidden" th:field="*{owner.personId}" />
+    </div>
+    <div>
+        <input type="submit" value="Добавить"/>
+    </div>
+</form>
+<a href="/playlists">Назад к списку</a>
+</body>
+</html>

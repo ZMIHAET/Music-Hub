@@ -12,6 +12,26 @@
 <p>
     <button th:onclick="|window.location.href='@{/people/{id}/edit(id=${person.personId})}'|">Редактировать</button>
 </p>
+<div th:if="${not #lists.isEmpty(person.playlists)}">
+    <br/>
+    <hr/>
+    <h3>Плейлисты:</h3>
+    <ul>
+        <li th:each="playlist : ${person.playlists}">
+            <p><a th:href="@{/playlists/{id}(id=${playlist.playlistId})}" th:text="${playlist.name}">Name</a></p>
+        </li>
+    </ul>
+</div>
+<div th:unless="${not #lists.isEmpty(person.playlists)}">
+    <p>Плейлистов нет</p>
+</div>
+
+<br/>
+<hr/>
+
+<p>
+    <button th:onclick="|window.location.href='@{/playlists/new(personId=${person.personId})}'|">Добавить плейлист</button>
+</p>
 
 <p>
 <form th:action="@{/people/{id}(id=${person.personId})}" method="post">

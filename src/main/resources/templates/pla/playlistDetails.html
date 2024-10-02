@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Playlist Details</title>
+</head>
+<body>
+<p><strong>Название:</strong> <span th:text="${playlist.name}">Name</span></p>
+<p><strong>Описание:</strong> <span th:text="${playlist.description}">Description</span></p>
+
+<p>
+    <button th:onclick="|window.location.href='@{/playlists/{id}/edit(id=${playlist.playlistId})}'|">Редактировать</button>
+</p>
+
+<p>
+<form th:action="@{/playlists/{id}(id=${playlist.playlistId})}" method="post">
+    <input type="hidden" name="_method" value="delete"/>
+    <input type="submit" value="Удалить"/>
+</form>
+</p>
+
+
+<a href="/playlists">Назад к списку</a>
+</body>
+</html>

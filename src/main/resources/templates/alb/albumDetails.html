@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Album Details</title>
+</head>
+<body>
+<p><strong>Название:</strong> <span th:text="${album.name}">Name</span></p>
+<p><strong>Год выпуска:</strong> <span th:text="${album.release}">Release</span></p>
+<p>
+    <button th:onclick="|window.location.href='@{/albums/{id}/edit(id=${album.albumId})}'|">Редактировать</button>
+</p>
+
+<p>
+<form th:action="@{/albums/{id}(id=${album.albumId})}" method="post">
+    <input type="hidden" name="_method" value="delete"/>
+    <input type="submit" value="Удалить"/>
+</form>
+</p>
+
+
+<a href="/albums">Назад к списку</a>
+</body>
+</html>

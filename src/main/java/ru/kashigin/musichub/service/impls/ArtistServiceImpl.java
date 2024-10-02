@@ -40,9 +40,8 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public Artist updateArtist(Long id, Artist artist) {
-        Optional<Artist> existingArtistOptional = artistRepository.findById(id);
-        if (existingArtistOptional.isPresent()) {
-            Artist existingArtist = existingArtistOptional.get();
+        Artist existingArtist = getArtistById(id);
+        if (existingArtist != null) {
             existingArtist.setName(artist.getName());
             existingArtist.setBio(artist.getBio());
 

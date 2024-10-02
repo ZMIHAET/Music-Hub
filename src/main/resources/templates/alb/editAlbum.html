@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit Album</title>
+</head>
+<body>
+<form th:action="@{/albums/{id}/edit(id=${album.albumId})}" th:object="${album}" method="post">
+    <div>
+        <label for="name">Введите название:</label>
+        <input type="text" id="name" th:field="*{name}" />
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+    </div>
+    <div>
+        <label for="release">Введите год релиза:</label>
+        <input type="text" id="release" th:field="*{release}" />
+        <div style="color:red" th:if="${#fields.hasErrors('release')}" th:errors="*{release}">Release error</div>
+    </div>
+    <div>
+        <button type="Submit">Сохранить</button>
+        <a th:href="@{/albums/{id}(id=${album.albumId})}">Отменить</a>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Playlists</title>
+</head>
+<body>
+<h1>Плейлисты</h1>
+<table>
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Описание</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="playlist : ${playlists}">
+        <td><a th:href="@{/playlists/{id}(id=${playlist.playlistId})}" th:text="${playlist.name}">Name</a></td>
+        <td th:text="${playlist.description}">Playlist</td>
+    </tr>
+    </tbody>
+</table>
+<br/>
+<hr/>
+<a href="/playlists/new"/>Добавить плейлист</a>
+<hr/>
+</body>
+</html>

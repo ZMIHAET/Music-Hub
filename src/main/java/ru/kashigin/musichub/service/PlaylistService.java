@@ -10,4 +10,5 @@ public interface PlaylistService {
     Playlist createPlaylist(Playlist playlist);
     Playlist updatePlaylist(Long id, Playlist playlist);
     void deletePlaylist(Long id);
+    void addOwner(Playlist playlist, Long personId);
 }

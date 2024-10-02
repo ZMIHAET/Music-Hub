@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Song Details</title>
+</head>
+<body>
+<p><strong>Имя:</strong> <span th:text="${song.name}">Name</span></p>
+<p><strong>Год релиза:</strong> <span th:text="${song.release}">Release</span></p>
+<p><strong>Продолжительность:</strong> <span th:text="${song.duration}">Duration</span></p>
+
+<p>
+    <button th:onclick="|window.location.href='@{/songs/{id}/edit(id=${song.songId})}'|">Редактировать</button>
+</p>
+
+<p>
+<form th:action="@{/songs/{id}(id=${song.songId})}" method="post">
+    <input type="hidden" name="_method" value="delete"/>
+    <input type="submit" value="Удалить"/>
+</form>
+</p>
+
+
+<a href="/songs">Назад к списку</a>
+</body>
+</html>

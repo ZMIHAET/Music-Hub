@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Add Song</title>
+</head>
+<body>
+<h1>Добавить новую песню</h1>
+<form action="#" th:action="@{/songs/new}" th:object="${song}" method="post">
+  <div>
+    <label for="name">Название:</label>
+    <input type="text" id="name" th:field="*{name}" />
+    <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+  </div>
+  <div>
+    <label for="release">Год релиза:</label>
+    <input type="text" id="release" th:field="*{release}" />
+    <div style="color:red" th:if="${#fields.hasErrors('release')}" th:errors="*{release}">Release error</div>
+  </div>
+  <div>
+    <label for="duration">Продолжительность:</label>
+    <input type="text" id="duration" th:field="*{duration}" />
+    <div style="color:red" th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}">Duration error</div>
+  </div>
+  <div>
+    <input type="submit" value="Добавить"/>
+  </div>
+</form>
+<a href="/songs">Назад к списку</a>
+</body>
+</html>

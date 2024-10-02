@@ -1,4 +1,4 @@
-package ru.kashigin.musichub.controller;
+package ru.kashigin.musichub.controller.views;
 
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;

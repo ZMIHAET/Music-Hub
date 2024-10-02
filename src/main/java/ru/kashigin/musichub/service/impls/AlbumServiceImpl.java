@@ -6,6 +6,7 @@ import ru.kashigin.musichub.repository.AlbumRepository;
 import ru.kashigin.musichub.service.AlbumService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AlbumServiceImpl implements AlbumService {
@@ -32,9 +33,12 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public Album updateAlbum(Long id, Album album) {
-        if(albumRepository.findById(id).isPresent()) {
-            albumRepository.deleteById(id);
-            return albumRepository.save(album);
+        Album existingAlbum = getAlbumById(id);
+        if (existingAlbum != null){
+            existingAlbum.setName(album.getName());
+            existingAlbum.setRelease(album.getRelease());
+
+            return albumRepository.save(existingAlbum);
         }
         return null;
     }

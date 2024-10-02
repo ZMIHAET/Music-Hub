@@ -6,6 +6,7 @@ import ru.kashigin.musichub.repository.GenreRepository;
 import ru.kashigin.musichub.service.GenreService;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class GenreServiceImpl implements GenreService {
@@ -32,9 +33,12 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public Genre updateGenre(Long id, Genre genre) {
-        if (genreRepository.findById(id).isPresent()){
-            genreRepository.deleteById(id);
-            return genreRepository.save(genre);
+        Genre existingGenre = getGenreById(id);
+        if (existingGenre != null){
+            existingGenre.setName(genre.getName());
+            existingGenre.setDescription(genre.getDescription());
+
+            return genreRepository.save(existingGenre);
         }
         return null;
     }

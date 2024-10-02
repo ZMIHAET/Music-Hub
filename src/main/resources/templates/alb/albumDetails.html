@@ -10,6 +10,28 @@
     <button th:onclick="|window.location.href='@{/albums/{id}/edit(id=${album.albumId})}'|">Редактировать</button>
 </p>
 
+<div th:if="${not #lists.isEmpty(album.songs)}">
+    <br/>
+    <hr/>
+    <h3>Песни:</h3>
+    <ul>
+        <li th:each="song : ${album.songs}">
+            <p><a th:href="@{/songs/{id}(id=${song.songId})}" th:text="${song.name}">Name</a>
+                (<span th:text="${song.duration}">Duration</span>)
+            </p>
+        </li>
+    </ul>
+</div>
+<div th:unless="${not #lists.isEmpty(album.songs)}">
+    <p>Песен нет</p>
+</div>
+
+<br/>
+<hr/>
+
+<p>
+    <button th:onclick="|window.location.href='@{/songs/new(albumId=${album.albumId})}'|">Добавить песню</button>
+</p>
 <p>
 <form th:action="@{/albums/{id}(id=${album.albumId})}" method="post">
     <input type="hidden" name="_method" value="delete"/>

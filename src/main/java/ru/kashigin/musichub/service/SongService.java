@@ -10,4 +10,5 @@ public interface SongService {
     Song createSong(Song song);
     Song updateSong(Long id, Song song);
     void deleteSong(Long id);
+    void addAlbum(Song song, Long albumId);
 }

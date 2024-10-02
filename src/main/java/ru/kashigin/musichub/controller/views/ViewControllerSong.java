@@ -21,14 +21,19 @@ public class ViewControllerSong {
         return "/son/songs";
     }
     @GetMapping("/songs/new")
-    public String addSong(Model model){
-        model.addAttribute("song", new Song());
+    public String addSong(Model model, @RequestParam(required = false) Long albumId){
+        Song song = new Song();
+        if (albumId != null)
+            songService.addAlbum(song, albumId);
+        model.addAttribute("song", song);
         return "/son/addSong";
     }
     @PostMapping("/songs/new")
     public String addSongSubmit(@ModelAttribute @Valid Song song, BindingResult bindingResult){
         if (bindingResult.hasErrors())
             return "/son/addSong";
+        if (song.getAlbum() != null && song.getAlbum().getAlbumId() != null)
+            songService.addAlbum(song, song.getAlbum().getAlbumId());
         songService.createSong(song);
         return "redirect:/songs";
     }

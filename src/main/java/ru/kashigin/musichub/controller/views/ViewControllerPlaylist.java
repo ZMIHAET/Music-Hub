@@ -25,9 +25,10 @@ public class ViewControllerPlaylist {
     }
 
     @GetMapping("/playlists/new")
-    public String addPlaylist(Model model, @RequestParam Long personId){
+    public String addPlaylist(Model model, @RequestParam(required = false) Long personId){
         Playlist playlist = new Playlist();
-        playlistService.addOwner(playlist, personId);
+        if (personId != null)
+            playlistService.addOwner(playlist, personId);
         model.addAttribute("playlist", playlist);
         return "/pla/addPlaylist";
     }

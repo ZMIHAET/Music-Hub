@@ -9,7 +9,6 @@ import ru.kashigin.musichub.repository.PlaylistRepository;
 import ru.kashigin.musichub.service.PlaylistService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class PlaylistServiceImpl implements PlaylistService {
@@ -34,6 +33,13 @@ public class PlaylistServiceImpl implements PlaylistService {
 
     @Override
     public Playlist createPlaylist(Playlist playlist) {
+        if (playlist.getOwner() != null && playlist.getOwner().getPersonId() != null) {
+            Person owner = personRepository.findById(playlist.getOwner().getPersonId())
+                    .orElseThrow(() -> new IllegalArgumentException("Person not found"));
+            playlist.setOwner(owner);
+        }
+        else
+            playlist.setOwner(null);
         return playlistRepository.save(playlist);
     }
 
@@ -43,6 +49,14 @@ public class PlaylistServiceImpl implements PlaylistService {
         if (existingPlaylist != null){
             existingPlaylist.setName(playlist.getName());
             existingPlaylist.setDescription(playlist.getDescription());
+
+            if (playlist.getOwner() != null && playlist.getOwner().getPersonId() != null) {
+                Person owner = personRepository.findById(playlist.getOwner().getPersonId())
+                        .orElseThrow(() -> new IllegalArgumentException("Person not found"));
+                existingPlaylist.setOwner(owner);
+            } else {
+                existingPlaylist.setOwner(null);
+            }
 
             playlistRepository.save(existingPlaylist);
         }
@@ -57,12 +71,14 @@ public class PlaylistServiceImpl implements PlaylistService {
     @Override
     @Transactional
     public void addOwner(Playlist playlist, Long personId) {
-        Person owner = personRepository.findById(personId)
-                .orElseThrow(() -> new IllegalArgumentException("Person not found"));
+        if (personId != null) {
+            Person owner = personRepository.findById(personId)
+                    .orElseThrow(() -> new IllegalArgumentException("Person not found"));
 
-        playlist.setOwner(owner);
+            playlist.setOwner(owner);
 
-        owner.getPlaylists().add(playlist);
-        personRepository.save(owner);
+            owner.getPlaylists().add(playlist);
+            personRepository.save(owner);
+        }
     }
 }

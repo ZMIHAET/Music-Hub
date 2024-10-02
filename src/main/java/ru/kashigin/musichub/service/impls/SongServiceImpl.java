@@ -1,19 +1,23 @@
 package ru.kashigin.musichub.service.impls;
 
 import org.springframework.stereotype.Service;
+import ru.kashigin.musichub.model.Album;
+import ru.kashigin.musichub.model.Person;
 import ru.kashigin.musichub.model.Song;
+import ru.kashigin.musichub.repository.AlbumRepository;
 import ru.kashigin.musichub.repository.SongRepository;
 import ru.kashigin.musichub.service.SongService;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SongServiceImpl implements SongService {
     private final SongRepository songRepository;
+    private final AlbumRepository albumRepository;
 
-    public SongServiceImpl(SongRepository songRepository) {
+    public SongServiceImpl(SongRepository songRepository, AlbumRepository albumRepository) {
         this.songRepository = songRepository;
+        this.albumRepository = albumRepository;
     }
 
     @Override
@@ -28,6 +32,14 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public Song createSong(Song song) {
+        if (song.getAlbum() != null && song.getAlbum().getAlbumId() != null) {
+            Album album = albumRepository.findById(song.getAlbum().getAlbumId())
+                    .orElseThrow(() -> new IllegalArgumentException("Album not found"));
+            song.setAlbum(album);
+        }
+        else
+            song.setAlbum(null);
+
         return songRepository.save(song);
     }
 
@@ -39,6 +51,13 @@ public class SongServiceImpl implements SongService {
             existingSong.setRelease(song.getRelease());
             existingSong.setDuration(song.getDuration());
 
+            if (song.getAlbum() != null && song.getAlbum().getAlbumId() != null) {
+                Album album = albumRepository.findById(song.getAlbum().getAlbumId())
+                        .orElseThrow(() -> new IllegalArgumentException("Album not found"));
+                song.setAlbum(album);
+            }
+            else
+                song.setAlbum(null);
             songRepository.save(existingSong);
         }
         return null;
@@ -47,5 +66,17 @@ public class SongServiceImpl implements SongService {
     @Override
     public void deleteSong(Long id) {
         songRepository.deleteById(id);
+    }
+
+    @Override
+    public void addAlbum(Song song, Long albumId) {
+        if (albumId != null) {
+            Album album = albumRepository.findById(albumId)
+                    .orElseThrow(() -> new IllegalArgumentException("Album not found"));
+            song.setAlbum(album);
+
+            album.getSongs().add(song);
+            albumRepository.save(album);
+        }
     }
 }

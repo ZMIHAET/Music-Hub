@@ -32,8 +32,6 @@ public class ViewControllerSong {
     public String addSongSubmit(@ModelAttribute @Valid Song song, BindingResult bindingResult){
         if (bindingResult.hasErrors())
             return "/son/addSong";
-        if (song.getAlbum() != null && song.getAlbum().getAlbumId() != null)
-            songService.addAlbum(song, song.getAlbum().getAlbumId());
         songService.createSong(song);
         return "redirect:/songs";
     }

@@ -1,24 +1,28 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Album Details</title>
+    <title>Add Album</title>
 </head>
 <body>
-<p><strong>Название:</strong> <span th:text="${album.name}">Name</span></p>
-<p><strong>Год релиза:</strong> <span th:text="${album.release}">Release</span></p>
-
-<p>
-    <button th:onclick="|window.location.href='@{/albums/{id}/edit(id=${album.albumId})}'|">Редактировать</button>
-</p>
-
-<p>
-<form th:action="@{/albums/{id}(id=${album.albumId})}" method="post">
-    <input type="hidden" name="_method" value="delete"/>
-    <input type="submit" value="Удалить"/>
+<h1>Добавить новый альбом</h1>
+<form action="#" th:action="@{/albums/new}" th:object="${album}" method="post">
+    <div>
+        <label for="name">Имя:</label>
+        <input type="text" id="name" th:field="*{name}" />
+        <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name error</div>
+    </div>
+    <div>
+        <label for="release">Release:</label>
+        <input type="text" id="release" th:field="*{release}" />
+        <div style="color:red" th:if="${#fields.hasErrors('release')}" th:errors="*{release}">Release error</div>
+    </div>
+    <div>
+        <input type="hidden" th:field="*{artist.artistId}" />
+    </div>
+    <div>
+        <input type="submit" value="Добавить"/>
+    </div>
 </form>
-</p>
-
-
 <a href="/albums">Назад к списку</a>
 </body>
 </html>

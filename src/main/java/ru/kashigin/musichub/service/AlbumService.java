@@ -10,4 +10,5 @@ public interface AlbumService {
     Album createAlbum(Album album);
     Album updateAlbum(Long id, Album album);
     void deleteAlbum(Long id);
+    void addArtist(Album album, Long artistId);
 }

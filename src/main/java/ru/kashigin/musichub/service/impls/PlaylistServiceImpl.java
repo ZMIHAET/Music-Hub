@@ -33,12 +33,7 @@ public class PlaylistServiceImpl implements PlaylistService {
 
     @Override
     public Playlist createPlaylist(Playlist playlist) {
-        if (playlist.getOwner() != null && playlist.getOwner().getPersonId() != null) {
-            Person owner = personRepository.findById(playlist.getOwner().getPersonId())
-                    .orElseThrow(() -> new IllegalArgumentException("Person not found"));
-            playlist.setOwner(owner);
-        }
-        else
+        if (playlist.getOwner() == null || playlist.getOwner().getPersonId() == null)
             playlist.setOwner(null);
         return playlistRepository.save(playlist);
     }
@@ -50,13 +45,8 @@ public class PlaylistServiceImpl implements PlaylistService {
             existingPlaylist.setName(playlist.getName());
             existingPlaylist.setDescription(playlist.getDescription());
 
-            if (playlist.getOwner() != null && playlist.getOwner().getPersonId() != null) {
-                Person owner = personRepository.findById(playlist.getOwner().getPersonId())
-                        .orElseThrow(() -> new IllegalArgumentException("Person not found"));
-                existingPlaylist.setOwner(owner);
-            } else {
+            if (playlist.getOwner() == null || playlist.getOwner().getPersonId() == null)
                 existingPlaylist.setOwner(null);
-            }
 
             playlistRepository.save(existingPlaylist);
         }

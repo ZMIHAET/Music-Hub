@@ -1,8 +1,8 @@
 package ru.kashigin.musichub.service.impls;
 
+import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import ru.kashigin.musichub.model.Album;
-import ru.kashigin.musichub.model.Person;
 import ru.kashigin.musichub.model.Song;
 import ru.kashigin.musichub.repository.AlbumRepository;
 import ru.kashigin.musichub.repository.SongRepository;
@@ -32,12 +32,7 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public Song createSong(Song song) {
-        if (song.getAlbum() != null && song.getAlbum().getAlbumId() != null) {
-            Album album = albumRepository.findById(song.getAlbum().getAlbumId())
-                    .orElseThrow(() -> new IllegalArgumentException("Album not found"));
-            song.setAlbum(album);
-        }
-        else
+        if (song.getAlbum() == null || song.getAlbum().getAlbumId() == null)
             song.setAlbum(null);
 
         return songRepository.save(song);
@@ -51,12 +46,7 @@ public class SongServiceImpl implements SongService {
             existingSong.setRelease(song.getRelease());
             existingSong.setDuration(song.getDuration());
 
-            if (song.getAlbum() != null && song.getAlbum().getAlbumId() != null) {
-                Album album = albumRepository.findById(song.getAlbum().getAlbumId())
-                        .orElseThrow(() -> new IllegalArgumentException("Album not found"));
-                song.setAlbum(album);
-            }
-            else
+            if (song.getAlbum() == null || song.getAlbum().getAlbumId() == null)
                 song.setAlbum(null);
             songRepository.save(existingSong);
         }
@@ -69,6 +59,7 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
+    @Transactional
     public void addAlbum(Song song, Long albumId) {
         if (albumId != null) {
             Album album = albumRepository.findById(albumId)

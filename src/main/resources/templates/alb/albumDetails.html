@@ -10,6 +10,9 @@
     <button th:onclick="|window.location.href='@{/albums/{id}/edit(id=${album.albumId})}'|">Редактировать</button>
 </p>
 
+//добавить имя артиста
+
+
 <div th:if="${not #lists.isEmpty(album.songs)}">
     <br/>
     <hr/>
@@ -28,6 +31,8 @@
 
 <br/>
 <hr/>
+
+
 
 <p>
     <button th:onclick="|window.location.href='@{/songs/new(albumId=${album.albumId})}'|">Добавить песню</button>

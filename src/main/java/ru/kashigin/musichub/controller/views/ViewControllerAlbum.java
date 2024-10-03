@@ -23,8 +23,11 @@ public class ViewControllerAlbum {
     }
 
     @GetMapping("/albums/new")
-    public String addAlbum(Model model){
-        model.addAttribute("album", new Album());
+    public String addAlbum(Model model, @RequestParam(required = false) Long artistId){
+        Album album = new Album();
+        if (artistId != null)
+            albumService.addArtist(album, artistId);
+        model.addAttribute("album", album);
         return "/alb/addAlbum";
     }
 

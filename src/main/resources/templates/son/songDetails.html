@@ -8,6 +8,16 @@
 <p><strong>Год релиза:</strong> <span th:text="${song.release}">Release</span></p>
 <p><strong>Продолжительность:</strong> <span th:text="${song.duration}">Duration</span></p>
 
+<div th:if="${song.album != null}">
+    <p>
+        Альбом: <a th:href="@{/albums/{id}(id=${song.album.albumId})}" th:text="${song.album.name}">Name</a>
+    </p>
+</div>
+<div th:unless="${song.album != null}">
+    <p>Сингл</p>
+</div>
+
+
 <p>
     <button th:onclick="|window.location.href='@{/songs/{id}/edit(id=${song.songId})}'|">Редактировать</button>
 </p>

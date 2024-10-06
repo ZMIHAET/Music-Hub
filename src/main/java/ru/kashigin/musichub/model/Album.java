@@ -28,11 +28,6 @@ public class Album {
     private int release;
 
     @ManyToOne
-    @JoinColumn(name = "genre_id", referencedColumnName = "genre_id")
-    @ToString.Exclude
-    private Genre genre;
-
-    @ManyToOne
     @JoinColumn(name = "artist_id", referencedColumnName = "artist_id")
     @ToString.Exclude
     private Artist artist;

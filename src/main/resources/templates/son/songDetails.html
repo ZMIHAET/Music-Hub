@@ -7,10 +7,14 @@
 <p><strong>Имя:</strong> <span th:text="${song.name}">Name</span></p>
 <p><strong>Год релиза:</strong> <span th:text="${song.release}">Release</span></p>
 <p><strong>Продолжительность:</strong> <span th:text="${song.duration}">Duration</span></p>
+<br/>
+<p>
+    <strong>Артист:</strong> <a th:href="@{/artists/{id}(id=${artist.artistId})}" th:text="${artist.name}">Artist</a>
+</p>
 
 <div th:if="${song.album != null}">
     <p>
-        Альбом: <a th:href="@{/albums/{id}(id=${song.album.albumId})}" th:text="${song.album.name}">Name</a>
+        Альбом: <a th:href="@{/albums/{id}(id=${song.album.albumId})}" th:text="${song.album.name}">Album</a>
     </p>
 </div>
 <div th:unless="${song.album != null}">

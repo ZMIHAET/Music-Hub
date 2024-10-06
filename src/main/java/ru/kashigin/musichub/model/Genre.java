@@ -27,7 +27,4 @@ public class Genre {
 
     @OneToMany(mappedBy = "genre")
     private List<Song> songs;
-
-    @OneToMany(mappedBy = "genre")
-    private List<Album> albums;
 }

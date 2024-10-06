@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ru.kashigin.musichub.model.Album;
 import ru.kashigin.musichub.model.Artist;
 import ru.kashigin.musichub.service.ArtistService;
 

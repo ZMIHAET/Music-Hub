@@ -23,7 +23,7 @@
     <ul>
         <li th:each="album : ${artist.albums}">
             <p><a th:href="@{/albums/{id}(id=${album.albumId})}" th:text="${album.name}">Name</a>
-                (<span th:text="${album.release}">Release</span>)
+                [<span th:text="${album.release}">Release</span>]
             </p>
         </li>
     </ul>
@@ -32,14 +32,32 @@
     <p>Альбомов нет</p>
 </div>
 
+<div th:if="${not #lists.isEmpty(artist.songs)}">
+    <br/>
+    <hr/>
+    <h3>Синглы:</h3>
+    <ul>
+        <li th:each="song : ${artist.songs}" th:if="${song.album?.albumId == null}">
+            <p><a th:href="@{/songs/{id}(id=${song.songId})}" th:text="${song.name}">Name</a>
+                (<span th:text="${song.duration}">Release</span>)
+            </p>
+        </li>
+    </ul>
+</div>
+
+
 <br/>
 <hr/>
-
 
 
 <p>
     <button th:onclick="|window.location.href='@{/albums/new(artistId=${artist.artistId})}'|">Добавить альбом</button>
 </p>
+<p>
+    <button th:onclick="|window.location.href='@{/songs/new(artistId=${artist.artistId})}'|">Добавить сингл</button>
+</p>
+<br/>
+<hr/>
 
 <p>
 <form th:action="@{/artists/{id}(id=${artist.artistId})}" method="post">

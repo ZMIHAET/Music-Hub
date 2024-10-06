@@ -22,6 +22,4 @@ public class GenreDTO {
     private String description;
 
     private List<Song> songs;
-
-    private List<Album> albums;
 }

@@ -4,9 +4,11 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import ru.kashigin.musichub.model.Album;
 import ru.kashigin.musichub.model.Artist;
+import ru.kashigin.musichub.model.Genre;
 import ru.kashigin.musichub.model.Song;
 import ru.kashigin.musichub.repository.AlbumRepository;
 import ru.kashigin.musichub.repository.ArtistRepository;
+import ru.kashigin.musichub.repository.GenreRepository;
 import ru.kashigin.musichub.repository.SongRepository;
 import ru.kashigin.musichub.service.SongService;
 
@@ -17,11 +19,13 @@ public class SongServiceImpl implements SongService {
     private final SongRepository songRepository;
     private final AlbumRepository albumRepository;
     private final ArtistRepository artistRepository;
+    private final GenreRepository genreRepository;
 
-    public SongServiceImpl(SongRepository songRepository, AlbumRepository albumRepository, ArtistRepository artistRepository) {
+    public SongServiceImpl(SongRepository songRepository, AlbumRepository albumRepository, ArtistRepository artistRepository, GenreRepository genreRepository) {
         this.songRepository = songRepository;
         this.albumRepository = albumRepository;
         this.artistRepository = artistRepository;
+        this.genreRepository = genreRepository;
     }
 
     @Override
@@ -53,6 +57,7 @@ public class SongServiceImpl implements SongService {
             existingSong.setName(song.getName());
             existingSong.setRelease(song.getRelease());
             existingSong.setDuration(song.getDuration());
+            existingSong.setGenre(song.getGenre());
             if (song.getAlbum() == null || song.getAlbum().getAlbumId() == null) {
                 song.setAlbum(null);
             }
@@ -83,6 +88,7 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
+    @Transactional
     public void addArtist(Song song, Long artistId) {
         if (artistId != null) {
             Artist artist = artistRepository.findById(artistId)
@@ -91,6 +97,21 @@ public class SongServiceImpl implements SongService {
 
             artist.getSongs().add(song);
             artistRepository.save(artist);
+        }
+    }
+
+    @Override
+    @Transactional
+    public void setGenre(Song song, Long genreId) {
+        if (genreId != null){
+            Genre genre = genreRepository.findById(genreId)
+                    .orElseThrow(() -> new IllegalArgumentException("Genre not found"));
+            song.setGenre(genre);
+
+            if (!genre.getSongs().contains(song)) {
+                genre.getSongs().add(song);
+                genreRepository.save(genre);
+            }
         }
     }
 }

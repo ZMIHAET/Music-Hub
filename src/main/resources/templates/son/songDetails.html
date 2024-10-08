@@ -7,6 +7,9 @@
 <p><strong>Имя:</strong> <span th:text="${song.name}">Name</span></p>
 <p><strong>Год релиза:</strong> <span th:text="${song.release}">Release</span></p>
 <p><strong>Продолжительность:</strong> <span th:text="${song.duration}">Duration</span></p>
+<p>
+    <strong>Жанр:</strong> <a th:href="@{/genres/{id}(id=${genre.genreId})}" th:text="${genre.name}">Genre</a>
+</p>
 <br/>
 <p>
     <strong>Артист:</strong> <a th:href="@{/artists/{id}(id=${artist.artistId})}" th:text="${artist.name}">Artist</a>

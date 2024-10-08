@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="artist -&gt; song and artist -&gt; album -&gt; song&#10;references between album and genre were deleted">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerSong.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerSong.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/SongService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/SongService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/SongServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/SongServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/son/addSong.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/son/addSong.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/son/editSong.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/son/editSong.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/son/songDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/son/songDetails.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+        <option value="HTML File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
+  <component name="ProjectId" id="2m9bHln4ojuQNEjRJYpxtpThhKw" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kirill/Desktop/MusicHub/src/main/webapp/WEB-INF&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ],
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;Properties&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Kirill\Desktop\MusicHub\src\main\webapp\WEB-INF" />
+      <recent name="C:\Users\Kirill\Desktop\MusicHub\src\main\resources" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Kirill\Desktop\MusicHub\src\main\resources\templates\" />
+      <recent name="C:\Users\Kirill\Desktop\MusicHub\src\main\resources" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Spring Boot.MH">
+    <configuration name="MH" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="MusicHub" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.kashigin.musichub.MusicHubApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AlbumTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="MusicHub" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ru.kashigin.musichub.test.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ru.kashigin.musichub.test" />
+      <option name="MAIN_CLASS_NAME" value="ru.kashigin.musichub.test.AlbumTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="TestNG.AlbumTest" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="" />
+      <created>1726491655984</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1726491655984</updated>
+      <workItem from="1726491657041" duration="7757000" />
+      <workItem from="1726568277013" duration="3359000" />
+      <workItem from="1726602365921" duration="2575000" />
+      <workItem from="1726692106348" duration="259000" />
+      <workItem from="1726776085025" duration="317000" />
+      <workItem from="1726832677410" duration="97000" />
+      <workItem from="1726910058521" duration="1621000" />
+      <workItem from="1726931418178" duration="51000" />
+      <workItem from="1726931522995" duration="458000" />
+      <workItem from="1726944299172" duration="1242000" />
+      <workItem from="1726945806187" duration="272000" />
+      <workItem from="1726955064955" duration="537000" />
+      <workItem from="1726955638483" duration="1627000" />
+      <workItem from="1727023766337" duration="5101000" />
+      <workItem from="1727181260947" duration="1988000" />
+      <workItem from="1727347315433" duration="4155000" />
+      <workItem from="1727355271106" duration="2776000" />
+      <workItem from="1727471114167" duration="5159000" />
+      <workItem from="1727522531997" duration="2134000" />
+      <workItem from="1727601819469" duration="4177000" />
+      <workItem from="1727629874596" duration="1549000" />
+      <workItem from="1727631542007" duration="9618000" />
+      <workItem from="1727690278689" duration="4351000" />
+      <workItem from="1727700099465" duration="2962000" />
+      <workItem from="1727771619941" duration="1717000" />
+      <workItem from="1727799703325" duration="3117000" />
+      <workItem from="1727876455297" duration="1285000" />
+      <workItem from="1727877843710" duration="12980000" />
+      <workItem from="1727974428798" duration="5075000" />
+      <workItem from="1727991852571" duration="923000" />
+      <workItem from="1727993655414" duration="658000" />
+      <workItem from="1728051616193" duration="1025000" />
+      <workItem from="1728071406245" duration="8071000" />
+      <workItem from="1728229286571" duration="5308000" />
+      <workItem from="1728381115131" duration="2135000" />
+      <workItem from="1728383279681" duration="399000" />
+    </task>
+    <task id="LOCAL-00001" summary="model">
+      <option name="closed" value="true" />
+      <created>1726776311870</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1726776311870</updated>
+    </task>
+    <task id="LOCAL-00002" summary="model">
+      <option name="closed" value="true" />
+      <created>1726925156763</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1726925156764</updated>
+    </task>
+    <task id="LOCAL-00003" summary="model">
+      <option name="closed" value="true" />
+      <created>1727029043855</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1727029043855</updated>
+    </task>
+    <task id="LOCAL-00004" summary="base(beginning)">
+      <option name="closed" value="true" />
+      <created>1727183221873</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1727183221873</updated>
+    </task>
+    <task id="LOCAL-00005" summary="service added">
+      <option name="closed" value="true" />
+      <created>1727353045038</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1727353045038</updated>
+    </task>
+    <task id="LOCAL-00006" summary="base fun for Person and Artist(photo problem)">
+      <option name="closed" value="true" />
+      <created>1727691307705</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1727691307705</updated>
+    </task>
+    <task id="LOCAL-00007" summary="base functions for every models and the logic of the adding playlists to the person">
+      <option name="closed" value="true" />
+      <created>1727883199489</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1727883199489</updated>
+    </task>
+    <task id="LOCAL-00008" summary="bug fix with playlist without owner">
+      <option name="closed" value="true" />
+      <created>1727894819420</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1727894819420</updated>
+    </task>
+    <task id="LOCAL-00009" summary="artist -&gt; album">
+      <option name="closed" value="true" />
+      <created>1727991953044</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1727991953044</updated>
+    </task>
+    <task id="LOCAL-00010" summary="artist -&gt; song and artist -&gt; album -&gt; song&#10;references between album and genre were deleted">
+      <option name="closed" value="true" />
+      <created>1728230869853</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1728230869853</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="model" />
+    <MESSAGE value="base(beginning)" />
+    <MESSAGE value="service added" />
+    <MESSAGE value="base fun for Person and Artist(photo problem)" />
+    <MESSAGE value="base functions for every models and the logic of the adding playlists to the person" />
+    <MESSAGE value="bug fix with playlist without owner" />
+    <MESSAGE value="artist -&gt; album" />
+    <MESSAGE value="artist -&gt; song and artist -&gt; album -&gt; song&#10;references between album and genre were deleted" />
+    <option name="LAST_COMMIT_MESSAGE" value="artist -&gt; song and artist -&gt; album -&gt; song&#10;references between album and genre were deleted" />
+  </component>
+</project>

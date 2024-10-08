@@ -22,6 +22,14 @@
     <div style="color:red" th:if="${#fields.hasErrors('duration')}" th:errors="*{duration}">Duration error</div>
   </div>
   <div>
+    <p>Выберите жанр:</p>
+      <label>
+        <select name="genreId">
+          <option th:each="genre : ${genres}" th:value="${genre.genreId}" th:text="${genre.name}"></option>
+        </select>
+      </label>
+  </div>
+  <div>
     <input type="hidden" th:field="*{album.albumId}" />
   </div>
   <div>

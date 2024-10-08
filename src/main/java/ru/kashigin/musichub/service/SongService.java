@@ -12,4 +12,5 @@ public interface SongService {
     void deleteSong(Long id);
     void addAlbum(Song song, Long albumId);
     void addArtist(Song song, Long artistId);
+    void setGenre(Song song, Long genreId);
 }

@@ -27,13 +27,13 @@ public class ViewControllerArtist {
     @GetMapping("/artists")
     public String viewArtists(Model model){
         model.addAttribute("artists", artistService.getAllArtists());
-        return "/art/artists";
+        return "art/artists";
     }
 
     @GetMapping("/artists/new")
     public String addArtist(Model model){
         model.addAttribute("artist", new Artist());
-        return "/art/addArtist";
+        return "art/addArtist";
     }
 
     @PostMapping("/artists/new")
@@ -41,14 +41,14 @@ public class ViewControllerArtist {
                                   @RequestParam("photo") MultipartFile file, Model model) {
         /*
         if (bindingResult.hasErrors()) {
-            return "/art/addArtist";
+            return "art/addArtist";
         }
          */
 
         if (file.isEmpty()) {
             model.addAttribute("error", "file_not_uploaded");
             model.addAttribute("artist", artist);
-            return "/art/addArtist";
+            return "art/addArtist";
         }
 
         try {
@@ -66,7 +66,7 @@ public class ViewControllerArtist {
             e.printStackTrace();
             model.addAttribute("error", "file_upload_failed");
             model.addAttribute("artist", artist);
-            return "/art/addArtist";
+            return "art/addArtist";
         }
 
         artistService.createArtist(artist);
@@ -80,7 +80,7 @@ public class ViewControllerArtist {
             throw new RuntimeException("Artist not found");
 
         model.addAttribute("artist", artist);
-        return "/art/artistDetails";
+        return "art/artistDetails";
     }
 
     @GetMapping("/artists/{id}/edit")
@@ -89,14 +89,14 @@ public class ViewControllerArtist {
         if (artist == null)
             throw new RuntimeException("Artist not found");
         model.addAttribute("artist", artist);
-        return "/art/editArtist";
+        return "art/editArtist";
     }
 
     @PostMapping("/artists/{id}/edit")
     public String editArtistSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid Artist artist,
                                    BindingResult bindingResult){
         if (bindingResult.hasErrors())
-            return "/art/editArtist";
+            return "art/editArtist";
         if (artistService.getArtistById(id) == null)
             throw new RuntimeException("Artist not found");
         artistService.updateArtist(id, artist);

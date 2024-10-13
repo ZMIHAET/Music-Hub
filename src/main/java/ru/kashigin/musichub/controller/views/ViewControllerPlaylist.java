@@ -21,7 +21,7 @@ public class ViewControllerPlaylist {
     @GetMapping("/playlists")
     public String viewPlaylists(Model model){
         model.addAttribute("playlists", playlistService.getAllPlaylists());
-        return "/pla/playlists";
+        return "pla/playlists";
     }
 
     @GetMapping("/playlists/new")
@@ -30,13 +30,13 @@ public class ViewControllerPlaylist {
         if (personId != null)
             playlistService.addOwner(playlist, personId);
         model.addAttribute("playlist", playlist);
-        return "/pla/addPlaylist";
+        return "pla/addPlaylist";
     }
 
     @PostMapping("/playlists/new")
     public String addPlaylistSubmit(@ModelAttribute @Valid Playlist playlist, BindingResult bindingResult){
         if(bindingResult.hasErrors())
-            return "/pla/addPlaylist";
+            return "pla/addPlaylist";
         playlistService.createPlaylist(playlist);
         return "redirect:/playlists";
     }
@@ -47,7 +47,7 @@ public class ViewControllerPlaylist {
         if (playlist == null)
             throw new RuntimeException("Playlist not found");
         model.addAttribute("playlist", playlist);
-        return "/pla/playlistDetails";
+        return "pla/playlistDetails";
     }
 
     @GetMapping("/playlists/{id}/edit")
@@ -56,14 +56,14 @@ public class ViewControllerPlaylist {
         if (playlist == null)
             throw new RuntimeException("Playlist not found");
         model.addAttribute("playlist", playlist);
-        return "/pla/editPlaylist";
+        return "pla/editPlaylist";
     }
 
     @PostMapping("/playlists/{id}/edit")
     public String editPlaylistSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid Playlist playlist,
                                   BindingResult bindingResult){
         if (bindingResult.hasErrors())
-            return "/pla/editPlaylist";
+            return "pla/editPlaylist";
         if (playlistService.getPlaylistById(id) == null)
             throw new RuntimeException("Playlist not found");
 

@@ -19,7 +19,7 @@ public class ViewControllerAlbum {
     @GetMapping("/albums")
     public String viewAlbums(Model model){
         model.addAttribute("albums", albumService.getAllAlbums());
-        return "/alb/albums";
+        return "alb/albums";
     }
 
     @GetMapping("/albums/new")
@@ -28,13 +28,13 @@ public class ViewControllerAlbum {
         if (artistId != null)
             albumService.addArtist(album, artistId);
         model.addAttribute("album", album);
-        return "/alb/addAlbum";
+        return "alb/addAlbum";
     }
 
     @PostMapping("/albums/new")
     public String addAlbum(@ModelAttribute @Valid Album album, BindingResult bindingResult){
         if (bindingResult.hasErrors())
-            return "/alb/addAlbum";
+            return "alb/addAlbum";
         albumService.createAlbum(album);
         return "redirect:/albums";
     }
@@ -45,7 +45,7 @@ public class ViewControllerAlbum {
         if (album == null)
             throw new RuntimeException("Album not found");
         model.addAttribute("album", album);
-        return "/alb/albumDetails";
+        return "alb/albumDetails";
     }
 
     @GetMapping("/albums/{id}/edit")
@@ -54,14 +54,14 @@ public class ViewControllerAlbum {
         if (album == null)
             throw new RuntimeException("Album not found");
         model.addAttribute("album", album);
-        return "/alb/editAlbum";
+        return "alb/editAlbum";
     }
 
     @PostMapping("/albums/{id}/edit")
     public String editAlbumSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid Album album,
                                   BindingResult bindingResult){
         if (bindingResult.hasErrors())
-            return "/alb/editAlbum";
+            return "alb/editAlbum";
         if (albumService.getAlbumById(id) == null)
             throw new RuntimeException("Album not found");
         albumService.updateAlbum(id, album);

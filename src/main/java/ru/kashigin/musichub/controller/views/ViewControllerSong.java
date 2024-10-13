@@ -24,7 +24,7 @@ public class ViewControllerSong {
     @GetMapping("/songs")
     public String viewSongs(Model model){
         model.addAttribute("songs", songService.getAllSongs());
-        return "/son/songs";
+        return "son/songs";
     }
     @GetMapping("/songs/new")
     public String addSong(Model model, @RequestParam(required = false) Long albumId,
@@ -36,13 +36,13 @@ public class ViewControllerSong {
             songService.addArtist(song, artistId);
         model.addAttribute("song", song);
         model.addAttribute("genres", genreService.getAllGenres());
-        return "/son/addSong";
+        return "son/addSong";
     }
     @PostMapping("/songs/new")
     public String addSongSubmit(@ModelAttribute @Valid Song song, BindingResult bindingResult,
                                 @RequestParam Long genreId){
         if (bindingResult.hasErrors())
-            return "/son/addSong";
+            return "son/addSong";
         songService.setGenre(song, genreId);
         songService.createSong(song);
         return "redirect:/songs";
@@ -63,7 +63,7 @@ public class ViewControllerSong {
         model.addAttribute("song", song);
         model.addAttribute("artist", artist);
         model.addAttribute("genre", genre);
-        return "/son/songDetails";
+        return "son/songDetails";
     }
     @GetMapping("/songs/{id}/edit")
     public String editSong(@PathVariable("id") Long id, Model model){
@@ -72,13 +72,13 @@ public class ViewControllerSong {
             throw new RuntimeException("Song not found");
         model.addAttribute("song", song);
         model.addAttribute("genres", genreService.getAllGenres());
-        return "/son/editSong";
+        return "son/editSong";
     }
     @PostMapping("/songs/{id}/edit")
     public String editSongSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid Song song,
                                  BindingResult bindingResult, @RequestParam Long genreId){
         if (bindingResult.hasErrors())
-            return "/son/editSong";
+            return "son/editSong";
         if (songService.getSongById(id) == null)
             throw new RuntimeException("Song not found");
         songService.setGenre(song, genreId);

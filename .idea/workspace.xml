@@ -4,21 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="artist -&gt; song and artist -&gt; album -&gt; song&#10;references between album and genre were deleted">
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+    <list default="true" id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="song -&gt; genre">
+      <change afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerAlbum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerAlbum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerArtist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerArtist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerGenre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerGenre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerPerson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerPlaylist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerPlaylist.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerSong.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerSong.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/SongService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/SongService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/SongServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/SongServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/son/addSong.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/son/addSong.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/son/editSong.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/son/editSong.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/son/songDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/son/songDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +27,7 @@
         <option value="Interface" />
         <option value="Class" />
         <option value="HTML File" />
+        <option value="Dockerfile" />
       </list>
     </option>
   </component>
@@ -160,7 +157,12 @@
       <workItem from="1728071406245" duration="8071000" />
       <workItem from="1728229286571" duration="5308000" />
       <workItem from="1728381115131" duration="2135000" />
-      <workItem from="1728383279681" duration="399000" />
+      <workItem from="1728383279681" duration="1913000" />
+      <workItem from="1728812414981" duration="116000" />
+      <workItem from="1728842882365" duration="1997000" />
+      <workItem from="1728844933476" duration="1252000" />
+      <workItem from="1728846214332" duration="1214000" />
+      <workItem from="1728847453702" duration="2751000" />
     </task>
     <task id="LOCAL-00001" summary="model">
       <option name="closed" value="true" />
@@ -242,7 +244,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728230869853</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="song -&gt; genre">
+      <option name="closed" value="true" />
+      <created>1728383740642</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1728383740642</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -257,6 +267,7 @@
     <MESSAGE value="bug fix with playlist without owner" />
     <MESSAGE value="artist -&gt; album" />
     <MESSAGE value="artist -&gt; song and artist -&gt; album -&gt; song&#10;references between album and genre were deleted" />
-    <option name="LAST_COMMIT_MESSAGE" value="artist -&gt; song and artist -&gt; album -&gt; song&#10;references between album and genre were deleted" />
+    <MESSAGE value="song -&gt; genre" />
+    <option name="LAST_COMMIT_MESSAGE" value="song -&gt; genre" />
   </component>
 </project>

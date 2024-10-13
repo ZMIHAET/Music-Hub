@@ -20,19 +20,19 @@ public class ViewControllerPerson {
     @GetMapping("/people")
     public String viewPeople(Model model){
         model.addAttribute("persons", personService.getAllPersons());
-        return "/per/persons";
+        return "per/persons";
     }
 
     @GetMapping("/people/new")
     public String addPerson(Model model){
         model.addAttribute("person", new Person());
-        return "/per/addPerson";
+        return "per/addPerson";
     }
 
     @PostMapping("/people/new")
     public String addPersonSubmit(@ModelAttribute @Valid Person person, BindingResult bindingResult){
         if (bindingResult.hasErrors())
-            return "/per/addPerson";
+            return "per/addPerson";
 
         person.setRegistration(LocalDate.now()); //добавление даты регистрации
         personService.createPerson(person);
@@ -46,7 +46,7 @@ public class ViewControllerPerson {
         if (person == null)
             throw new RuntimeException("Person not found");
         model.addAttribute("person", person);
-        return "/per/personDetails";
+        return "per/personDetails";
     }
 
     @GetMapping("/people/{id}/edit")
@@ -55,14 +55,14 @@ public class ViewControllerPerson {
         if (person == null)
             throw new RuntimeException("Person not found");
         model.addAttribute("person", person);
-        return "/per/editPerson";
+        return "per/editPerson";
     }
 
     @PostMapping("/people/{id}/edit")
     public String editPersonSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid Person person,
                                    BindingResult bindingResult){
         if (bindingResult.hasErrors())
-            return "/per/editPerson";
+            return "per/editPerson";
         if (personService.getPersonById(id) == null)
             throw new RuntimeException("Person not found");
 

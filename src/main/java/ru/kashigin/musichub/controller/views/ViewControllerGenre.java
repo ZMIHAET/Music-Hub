@@ -20,19 +20,19 @@ public class ViewControllerGenre {
     @GetMapping("/genres")
     public String viewGenres(Model model){
         model.addAttribute("genres", genreService.getAllGenres());
-        return "/gen/genres";
+        return "gen/genres";
     }
 
     @GetMapping("/genres/new")
     public String addGenre(Model model){
         model.addAttribute("genre", new Genre());
-        return "/gen/addGenre";
+        return "gen/addGenre";
     }
 
     @PostMapping("/genres/new")
     public String addGenreSubmit(@ModelAttribute @Valid Genre genre, BindingResult bindingResult){
         if(bindingResult.hasErrors())
-            return "/gen/addGenre";
+            return "gen/addGenre";
         genreService.createGenre(genre);
         return "redirect:/genres";
     }
@@ -43,7 +43,7 @@ public class ViewControllerGenre {
         if (genre == null)
             throw new RuntimeException("Genre not found");
         model.addAttribute("genre", genre);
-        return "/gen/genreDetails";
+        return "gen/genreDetails";
     }
 
     @GetMapping("/genres/{id}/edit")
@@ -52,14 +52,14 @@ public class ViewControllerGenre {
         if (genre == null)
             throw new RuntimeException("Genre not found");
         model.addAttribute("genre", genre);
-        return "/gen/editGenre";
+        return "gen/editGenre";
     }
 
     @PostMapping("/genres/{id}/edit")
     public String editGenreSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid Genre genre,
                                   BindingResult bindingResult){
         if (bindingResult.hasErrors())
-            return "/gen/editGenre";
+            return "gen/editGenre";
         if (genreService.getGenreById(id) == null)
             throw new RuntimeException("Genre not found");
 

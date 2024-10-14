@@ -1,6 +1,7 @@
 package ru.kashigin.musichub.controller.views;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,12 +18,9 @@ import java.nio.file.Paths;
 import java.util.Objects;
 
 @Controller
+@RequiredArgsConstructor
 public class ViewControllerArtist {
     private final ArtistService artistService;
-
-    public ViewControllerArtist(ArtistService artistService) {
-        this.artistService = artistService;
-    }
 
     @GetMapping("/artists")
     public String viewArtists(Model model){

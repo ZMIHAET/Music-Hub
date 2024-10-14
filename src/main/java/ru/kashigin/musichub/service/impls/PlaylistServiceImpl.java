@@ -1,6 +1,7 @@
 package ru.kashigin.musichub.service.impls;
 
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.kashigin.musichub.model.Person;
 import ru.kashigin.musichub.model.Playlist;
@@ -11,15 +12,11 @@ import ru.kashigin.musichub.service.PlaylistService;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class PlaylistServiceImpl implements PlaylistService {
     private final PlaylistRepository playlistRepository;
     private final PersonRepository personRepository;
 
-
-    public PlaylistServiceImpl(PlaylistRepository playlistRepository, PersonRepository personRepository) {
-        this.playlistRepository = playlistRepository;
-        this.personRepository = personRepository;
-    }
 
     @Override
     public List<Playlist> getAllPlaylists() {

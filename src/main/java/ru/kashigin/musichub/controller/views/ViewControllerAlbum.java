@@ -1,6 +1,7 @@
 package ru.kashigin.musichub.controller.views;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -9,12 +10,9 @@ import ru.kashigin.musichub.model.Album;
 import ru.kashigin.musichub.service.AlbumService;
 
 @Controller
+@RequiredArgsConstructor
 public class ViewControllerAlbum {
     private final AlbumService albumService;
-
-    public ViewControllerAlbum(AlbumService albumService) {
-        this.albumService = albumService;
-    }
 
     @GetMapping("/albums")
     public String viewAlbums(Model model){

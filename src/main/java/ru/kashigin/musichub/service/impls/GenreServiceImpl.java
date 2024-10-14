@@ -1,5 +1,6 @@
 package ru.kashigin.musichub.service.impls;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.kashigin.musichub.model.Genre;
 import ru.kashigin.musichub.repository.GenreRepository;
@@ -9,12 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class GenreServiceImpl implements GenreService {
     private final GenreRepository genreRepository;
-
-    public GenreServiceImpl(GenreRepository genreRepository) {
-        this.genreRepository = genreRepository;
-    }
 
     @Override
     public List<Genre> getAllGenres() {

@@ -1,5 +1,6 @@
 package ru.kashigin.musichub.service.impls;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.kashigin.musichub.model.Person;
 import ru.kashigin.musichub.repository.PersonRepository;
@@ -9,12 +10,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class PersonServiceImpl implements PersonService {
     private final PersonRepository personRepository;
-
-    public PersonServiceImpl(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
 
     @Override
     public List<Person> getAllPersons() {

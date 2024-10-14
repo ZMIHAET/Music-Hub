@@ -1,6 +1,7 @@
 package ru.kashigin.musichub.service.impls;
 
 import jakarta.transaction.Transactional;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.kashigin.musichub.model.Album;
 import ru.kashigin.musichub.model.Artist;
@@ -11,14 +12,10 @@ import ru.kashigin.musichub.service.AlbumService;
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class AlbumServiceImpl implements AlbumService {
     private final AlbumRepository albumRepository;
     private final ArtistRepository artistRepository;
-
-    public AlbumServiceImpl(AlbumRepository albumRepository, ArtistRepository artistRepository) {
-        this.albumRepository = albumRepository;
-        this.artistRepository = artistRepository;
-    }
 
     @Override
     public List<Album> getAllAlbums() {

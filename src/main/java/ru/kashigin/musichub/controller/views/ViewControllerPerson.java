@@ -1,6 +1,7 @@
 package ru.kashigin.musichub.controller.views;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,12 +12,10 @@ import ru.kashigin.musichub.service.PersonService;
 import java.time.LocalDate;
 
 @Controller
+@RequiredArgsConstructor
 public class ViewControllerPerson {
     private final PersonService personService;
 
-    public ViewControllerPerson(PersonService personService) {
-        this.personService = personService;
-    }
     @GetMapping("/people")
     public String viewPeople(Model model){
         model.addAttribute("persons", personService.getAllPersons());

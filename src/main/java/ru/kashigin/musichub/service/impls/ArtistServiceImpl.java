@@ -1,5 +1,6 @@
 package ru.kashigin.musichub.service.impls;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.kashigin.musichub.model.Artist;
@@ -16,12 +17,9 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class ArtistServiceImpl implements ArtistService {
     private final ArtistRepository artistRepository;
-
-    public ArtistServiceImpl(ArtistRepository artistRepository) {
-        this.artistRepository = artistRepository;
-    }
 
     @Override
     public List<Artist> getAllArtists() {

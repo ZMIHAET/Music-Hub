@@ -1,6 +1,7 @@
 package ru.kashigin.musichub.controller.views;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -11,12 +12,9 @@ import ru.kashigin.musichub.service.PersonService;
 import ru.kashigin.musichub.service.PlaylistService;
 
 @Controller
+@RequiredArgsConstructor
 public class ViewControllerPlaylist {
     private final PlaylistService playlistService;
-    public ViewControllerPlaylist(PlaylistService playlistService) {
-        this.playlistService = playlistService;
-    }
-
 
     @GetMapping("/playlists")
     public String viewPlaylists(Model model){

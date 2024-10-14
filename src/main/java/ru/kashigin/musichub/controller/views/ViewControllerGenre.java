@@ -1,6 +1,7 @@
 package ru.kashigin.musichub.controller.views;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -10,12 +11,9 @@ import ru.kashigin.musichub.model.Genre;
 import ru.kashigin.musichub.service.GenreService;
 
 @Controller
+@RequiredArgsConstructor
 public class ViewControllerGenre {
     private final GenreService genreService;
-
-    public ViewControllerGenre(GenreService genreService) {
-        this.genreService = genreService;
-    }
 
     @GetMapping("/genres")
     public String viewGenres(Model model){

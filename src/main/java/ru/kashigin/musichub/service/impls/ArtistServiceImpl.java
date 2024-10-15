@@ -1,8 +1,10 @@
 package ru.kashigin.musichub.service.impls;
 
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import ru.kashigin.musichub.dto.ArtistDto;
 import ru.kashigin.musichub.model.Artist;
 import ru.kashigin.musichub.model.Person;
 import ru.kashigin.musichub.repository.ArtistRepository;
@@ -20,6 +22,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ArtistServiceImpl implements ArtistService {
     private final ArtistRepository artistRepository;
+    private final ModelMapper modelMapper;
 
     @Override
     public List<Artist> getAllArtists() {
@@ -54,5 +57,10 @@ public class ArtistServiceImpl implements ArtistService {
     @Override
     public void deleteArtist(Long id) {
         artistRepository.deleteById(id);
+    }
+
+    @Override
+    public Artist convertToArtist(ArtistDto artistDto) {
+        return modelMapper.map(artistDto, Artist.class);
     }
 }

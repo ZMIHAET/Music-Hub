@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.kashigin.musichub.dto.PersonDto;
 import ru.kashigin.musichub.model.Person;
 import ru.kashigin.musichub.service.PersonService;
 
@@ -29,7 +30,8 @@ public class ViewControllerPerson {
     }
 
     @PostMapping("/people/new")
-    public String addPersonSubmit(@ModelAttribute @Valid Person person, BindingResult bindingResult){
+    public String addPersonSubmit(@ModelAttribute @Valid PersonDto personDto, BindingResult bindingResult){
+        Person person = personService.convertToPerson(personDto);
         if (bindingResult.hasErrors())
             return "per/addPerson";
 
@@ -58,8 +60,9 @@ public class ViewControllerPerson {
     }
 
     @PostMapping("/people/{id}/edit")
-    public String editPersonSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid Person person,
+    public String editPersonSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid PersonDto personDto,
                                    BindingResult bindingResult){
+        Person person = personService.convertToPerson(personDto);
         if (bindingResult.hasErrors())
             return "per/editPerson";
         if (personService.getPersonById(id) == null)

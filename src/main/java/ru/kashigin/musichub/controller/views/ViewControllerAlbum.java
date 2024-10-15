@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.kashigin.musichub.dto.AlbumDto;
 import ru.kashigin.musichub.model.Album;
 import ru.kashigin.musichub.service.AlbumService;
 
@@ -30,7 +31,8 @@ public class ViewControllerAlbum {
     }
 
     @PostMapping("/albums/new")
-    public String addAlbum(@ModelAttribute @Valid Album album, BindingResult bindingResult){
+    public String addAlbum(@ModelAttribute @Valid AlbumDto albumDto, BindingResult bindingResult){
+        Album album = albumService.convertToAlbum(albumDto);
         if (bindingResult.hasErrors())
             return "alb/addAlbum";
         albumService.createAlbum(album);
@@ -56,8 +58,9 @@ public class ViewControllerAlbum {
     }
 
     @PostMapping("/albums/{id}/edit")
-    public String editAlbumSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid Album album,
+    public String editAlbumSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid AlbumDto albumDto,
                                   BindingResult bindingResult){
+        Album album = albumService.convertToAlbum(albumDto);
         if (bindingResult.hasErrors())
             return "alb/editAlbum";
         if (albumService.getAlbumById(id) == null)

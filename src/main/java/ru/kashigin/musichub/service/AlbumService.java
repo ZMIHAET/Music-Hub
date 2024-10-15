@@ -1,5 +1,6 @@
 package ru.kashigin.musichub.service;
 
+import ru.kashigin.musichub.dto.AlbumDto;
 import ru.kashigin.musichub.model.Album;
 
 import java.util.List;
@@ -11,4 +12,5 @@ public interface AlbumService {
     Album updateAlbum(Long id, Album album);
     void deleteAlbum(Long id);
     void addArtist(Album album, Long artistId);
+    Album convertToAlbum(AlbumDto aLbumDto);
 }

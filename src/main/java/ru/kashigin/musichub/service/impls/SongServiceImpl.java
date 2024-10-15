@@ -2,7 +2,9 @@ package ru.kashigin.musichub.service.impls;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import ru.kashigin.musichub.dto.SongDto;
 import ru.kashigin.musichub.model.Album;
 import ru.kashigin.musichub.model.Artist;
 import ru.kashigin.musichub.model.Genre;
@@ -22,6 +24,7 @@ public class SongServiceImpl implements SongService {
     private final AlbumRepository albumRepository;
     private final ArtistRepository artistRepository;
     private final GenreRepository genreRepository;
+    private final ModelMapper modelMapper;
 
     @Override
     public List<Song> getAllSongs() {
@@ -108,5 +111,10 @@ public class SongServiceImpl implements SongService {
                 genreRepository.save(genre);
             }
         }
+    }
+
+    @Override
+    public Song convertToSong(SongDto songDto) {
+        return modelMapper.map(songDto, Song.class);
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.service.annotation.GetExchange;
+import ru.kashigin.musichub.dto.GenreDto;
 import ru.kashigin.musichub.model.Genre;
 import ru.kashigin.musichub.service.GenreService;
 
@@ -28,7 +29,8 @@ public class ViewControllerGenre {
     }
 
     @PostMapping("/genres/new")
-    public String addGenreSubmit(@ModelAttribute @Valid Genre genre, BindingResult bindingResult){
+    public String addGenreSubmit(@ModelAttribute @Valid GenreDto genreDto, BindingResult bindingResult){
+        Genre genre = genreService.convertToGenre(genreDto);
         if(bindingResult.hasErrors())
             return "gen/addGenre";
         genreService.createGenre(genre);
@@ -54,8 +56,9 @@ public class ViewControllerGenre {
     }
 
     @PostMapping("/genres/{id}/edit")
-    public String editGenreSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid Genre genre,
+    public String editGenreSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid GenreDto genreDto,
                                   BindingResult bindingResult){
+        Genre genre = genreService.convertToGenre(genreDto);
         if (bindingResult.hasErrors())
             return "gen/editGenre";
         if (genreService.getGenreById(id) == null)

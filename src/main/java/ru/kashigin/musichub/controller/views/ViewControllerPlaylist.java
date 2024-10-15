@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.kashigin.musichub.dto.PlaylistDto;
 import ru.kashigin.musichub.model.Person;
 import ru.kashigin.musichub.model.Playlist;
 import ru.kashigin.musichub.service.PersonService;
@@ -32,7 +33,8 @@ public class ViewControllerPlaylist {
     }
 
     @PostMapping("/playlists/new")
-    public String addPlaylistSubmit(@ModelAttribute @Valid Playlist playlist, BindingResult bindingResult){
+    public String addPlaylistSubmit(@ModelAttribute @Valid PlaylistDto playlistDto, BindingResult bindingResult){
+        Playlist playlist = playlistService.convertToPlaylist(playlistDto);
         if(bindingResult.hasErrors())
             return "pla/addPlaylist";
         playlistService.createPlaylist(playlist);
@@ -58,8 +60,9 @@ public class ViewControllerPlaylist {
     }
 
     @PostMapping("/playlists/{id}/edit")
-    public String editPlaylistSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid Playlist playlist,
+    public String editPlaylistSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid PlaylistDto playlistDto,
                                   BindingResult bindingResult){
+        Playlist playlist = playlistService.convertToPlaylist(playlistDto);
         if (bindingResult.hasErrors())
             return "pla/editPlaylist";
         if (playlistService.getPlaylistById(id) == null)

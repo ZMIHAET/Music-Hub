@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import ru.kashigin.musichub.dto.SongDto;
 import ru.kashigin.musichub.model.Artist;
 import ru.kashigin.musichub.model.Genre;
 import ru.kashigin.musichub.model.Song;
@@ -37,8 +38,9 @@ public class ViewControllerSong {
         return "son/addSong";
     }
     @PostMapping("/songs/new")
-    public String addSongSubmit(@ModelAttribute @Valid Song song, BindingResult bindingResult,
+    public String addSongSubmit(@ModelAttribute @Valid SongDto songDto, BindingResult bindingResult,
                                 @RequestParam Long genreId){
+        Song song = songService.convertToSong(songDto);
         if (bindingResult.hasErrors())
             return "son/addSong";
         songService.setGenre(song, genreId);
@@ -73,8 +75,9 @@ public class ViewControllerSong {
         return "son/editSong";
     }
     @PostMapping("/songs/{id}/edit")
-    public String editSongSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid Song song,
+    public String editSongSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid SongDto songDto,
                                  BindingResult bindingResult, @RequestParam Long genreId){
+        Song song = songService.convertToSong(songDto);
         if (bindingResult.hasErrors())
             return "son/editSong";
         if (songService.getSongById(id) == null)

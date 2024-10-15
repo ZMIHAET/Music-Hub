@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import ru.kashigin.musichub.dto.ArtistDto;
 import ru.kashigin.musichub.model.Album;
 import ru.kashigin.musichub.model.Artist;
 import ru.kashigin.musichub.service.ArtistService;
@@ -35,7 +36,7 @@ public class ViewControllerArtist {
     }
 
     @PostMapping("/artists/new")
-    public String addArtistSubmit(@ModelAttribute @Valid Artist artist, BindingResult bindingResult,
+    public String addArtistSubmit(@ModelAttribute @Valid ArtistDto artistDto, BindingResult bindingResult,
                                   @RequestParam("photo") MultipartFile file, Model model) {
         /*
         if (bindingResult.hasErrors()) {
@@ -43,6 +44,7 @@ public class ViewControllerArtist {
         }
          */
 
+        Artist artist = artistService.convertToArtist(artistDto);
         if (file.isEmpty()) {
             model.addAttribute("error", "file_not_uploaded");
             model.addAttribute("artist", artist);
@@ -91,8 +93,9 @@ public class ViewControllerArtist {
     }
 
     @PostMapping("/artists/{id}/edit")
-    public String editArtistSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid Artist artist,
+    public String editArtistSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid ArtistDto artistDto,
                                    BindingResult bindingResult){
+        Artist artist = artistService.convertToArtist(artistDto);
         if (bindingResult.hasErrors())
             return "art/editArtist";
         if (artistService.getArtistById(id) == null)

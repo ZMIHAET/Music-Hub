@@ -1,7 +1,9 @@
 package ru.kashigin.musichub.service.impls;
 
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import ru.kashigin.musichub.dto.GenreDto;
 import ru.kashigin.musichub.model.Genre;
 import ru.kashigin.musichub.repository.GenreRepository;
 import ru.kashigin.musichub.service.GenreService;
@@ -13,6 +15,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class GenreServiceImpl implements GenreService {
     private final GenreRepository genreRepository;
+    private final ModelMapper modelMapper;
 
     @Override
     public List<Genre> getAllGenres() {
@@ -44,5 +47,10 @@ public class GenreServiceImpl implements GenreService {
     @Override
     public void deleteGenre(Long id) {
         genreRepository.deleteById(id);
+    }
+
+    @Override
+    public Genre convertToGenre(GenreDto genreDto) {
+        return modelMapper.map(genreDto, Genre.class);
     }
 }

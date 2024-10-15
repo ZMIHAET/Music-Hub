@@ -2,7 +2,9 @@ package ru.kashigin.musichub.service.impls;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import ru.kashigin.musichub.dto.PlaylistDto;
 import ru.kashigin.musichub.model.Person;
 import ru.kashigin.musichub.model.Playlist;
 import ru.kashigin.musichub.repository.PersonRepository;
@@ -16,7 +18,7 @@ import java.util.List;
 public class PlaylistServiceImpl implements PlaylistService {
     private final PlaylistRepository playlistRepository;
     private final PersonRepository personRepository;
-
+    private final ModelMapper modelMapper;
 
     @Override
     public List<Playlist> getAllPlaylists() {
@@ -67,5 +69,10 @@ public class PlaylistServiceImpl implements PlaylistService {
             owner.getPlaylists().add(playlist);
             personRepository.save(owner);
         }
+    }
+
+    @Override
+    public Playlist convertToPlaylist(PlaylistDto playlistDto) {
+        return modelMapper.map(playlistDto, Playlist.class);
     }
 }

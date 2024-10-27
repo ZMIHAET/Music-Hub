@@ -78,6 +78,12 @@
       <version>7.10.2</version>
       <scope>test</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/io.minio/minio -->
+    <dependency>
+      <groupId>io.minio</groupId>
+      <artifactId>minio</artifactId>
+      <version>8.5.12</version>
+    </dependency>
 
 
   </dependencies>

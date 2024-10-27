@@ -28,12 +28,12 @@ public class ViewControllerPlaylist {
         Playlist playlist = new Playlist();
         if (personId != null)
             playlistService.addOwner(playlist, personId);
-        model.addAttribute("playlist", playlist);
+        model.addAttribute("playlist", new PlaylistDto());
         return "pla/addPlaylist";
     }
 
     @PostMapping("/playlists/new")
-    public String addPlaylistSubmit(@ModelAttribute @Valid PlaylistDto playlistDto, BindingResult bindingResult){
+    public String addPlaylistSubmit(@ModelAttribute("playlist") @Valid PlaylistDto playlistDto, BindingResult bindingResult){
         Playlist playlist = playlistService.convertToPlaylist(playlistDto);
         if(bindingResult.hasErrors())
             return "pla/addPlaylist";

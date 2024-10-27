@@ -25,12 +25,12 @@ public class ViewControllerPerson {
 
     @GetMapping("/people/new")
     public String addPerson(Model model){
-        model.addAttribute("person", new Person());
+        model.addAttribute("person", new PersonDto());
         return "per/addPerson";
     }
 
     @PostMapping("/people/new")
-    public String addPersonSubmit(@ModelAttribute @Valid PersonDto personDto, BindingResult bindingResult){
+    public String addPersonSubmit(@ModelAttribute("person") @Valid PersonDto personDto, BindingResult bindingResult){
         Person person = personService.convertToPerson(personDto);
         if (bindingResult.hasErrors())
             return "per/addPerson";

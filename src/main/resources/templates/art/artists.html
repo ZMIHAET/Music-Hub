@@ -18,7 +18,7 @@
         <td><a th:href="@{/artists/{id}(id=${artist.artistId})}" th:text="${artist.name}">Name</a></td>
         <td th:text="${artist.bio}">Bio</td>
         <td>
-            <img th:src="@{${artist.photo}}" alt="Artist Photo" style="max-width: 100px; max-height: 100px;"/>
+            <img th:src="@{/artists/photo/{photoName}(photoName=${artist.photo})}" style="max-width: 100px; max-height: 100px;">
         </td>
     </tr>
     </tbody>

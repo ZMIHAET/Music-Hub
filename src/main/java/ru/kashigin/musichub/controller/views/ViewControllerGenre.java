@@ -24,12 +24,12 @@ public class ViewControllerGenre {
 
     @GetMapping("/genres/new")
     public String addGenre(Model model){
-        model.addAttribute("genre", new Genre());
+        model.addAttribute("genre", new GenreDto());
         return "gen/addGenre";
     }
 
     @PostMapping("/genres/new")
-    public String addGenreSubmit(@ModelAttribute @Valid GenreDto genreDto, BindingResult bindingResult){
+    public String addGenreSubmit(@ModelAttribute("genre") @Valid GenreDto genreDto, BindingResult bindingResult){
         Genre genre = genreService.convertToGenre(genreDto);
         if(bindingResult.hasErrors())
             return "gen/addGenre";

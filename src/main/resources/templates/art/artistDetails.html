@@ -6,10 +6,7 @@
 <body>
 <p><strong>Имя:</strong> <span th:text="${artist.name}">Name</span></p>
 <p><strong>Биография:</strong> <span th:text="${artist.bio}">Bio</span></p>
-<p>
-    <strong>Фото:</strong>
-    <img th:src="@{${artist.photo}}" alt="Artist Photo" style="max-width: 100px; max-height: 100px;" onload="logImageSrc(this.src)" onerror="logImageSrc('Error loading image')"/>
-</p>
+<img th:src="${photoUrl}" alt="Artist Photo" style="max-width: 300px;"/>
 
 <p>
     <button th:onclick="|window.location.href='@{/artists/{id}/edit(id=${artist.artistId})}'|">Редактировать</button>

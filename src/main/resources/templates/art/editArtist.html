@@ -4,7 +4,7 @@
     <title>Edit Artist</title>
 </head>
 <body>
-<form th:action="@{/artists/{id}/edit(id=${artist.artistId})}" th:object="${artist}" method="post">
+<form th:action="@{/artists/{id}/edit(id=${artist.artistId})}" th:object="${artist}" method="post" enctype="multipart/form-data">
     <div>
         <label for="name">Введите имя:</label>
         <input type="text" id="name" th:field="*{name}" />
@@ -14,14 +14,10 @@
         <label for="bio">Введите биографию:</label>
         <input type="text" id="bio" th:field="*{bio}" />
     </div>
-    <!--
     <div>
         <label for="photo">Загрузите фото:</label>
-        <input type="file" id="photo" name="photo" />
-        <div style="color:red" th:if="${param.error == 'file_not_uploaded'}">Файл не выбран</div>
-        <div style="color:red" th:if="${param.error == 'file_upload_failed'}">Ошибка загрузки файла</div>
+        <input type="file" id="photo" name="photo" accept="image/*" required>
     </div>
-    -->
     <div>
         <button type="Submit">Сохранить</button>
         <a th:href="@{/artists/{id}(id=${artist.artistId})}">Отменить</a>

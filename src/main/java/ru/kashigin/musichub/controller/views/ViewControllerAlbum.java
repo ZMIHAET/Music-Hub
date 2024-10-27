@@ -26,12 +26,12 @@ public class ViewControllerAlbum {
         Album album = new Album();
         if (artistId != null)
             albumService.addArtist(album, artistId);
-        model.addAttribute("album", album);
+        model.addAttribute("album", new AlbumDto());
         return "alb/addAlbum";
     }
 
     @PostMapping("/albums/new")
-    public String addAlbum(@ModelAttribute @Valid AlbumDto albumDto, BindingResult bindingResult){
+    public String addAlbumSubmit(@ModelAttribute("album") @Valid AlbumDto albumDto, BindingResult bindingResult){
         Album album = albumService.convertToAlbum(albumDto);
         if (bindingResult.hasErrors())
             return "alb/addAlbum";

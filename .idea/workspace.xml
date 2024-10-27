@@ -4,8 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="@RequiredArgsConstructor was added">
+    <list default="true" id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="Controllers are using DTO now (ModelMapper)">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/configs/MinioConfig.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerAlbum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerAlbum.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerArtist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerArtist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerGenre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerGenre.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerPerson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerPlaylist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerPlaylist.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerSong.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerSong.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/dto/AlbumDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/dto/AlbumDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/ArtistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/ArtistService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/ArtistServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/ArtistServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/alb/addAlbum.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/alb/addAlbum.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/art/addArtist.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/art/addArtist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/art/artistDetails.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/art/artistDetails.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/art/artists.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/art/artists.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/art/editArtist.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/art/editArtist.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,9 +34,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
-        <option value="Class" />
         <option value="HTML File" />
         <option value="Dockerfile" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -156,6 +174,11 @@
       <workItem from="1728847453702" duration="3337000" />
       <workItem from="1728915102148" duration="908000" />
       <workItem from="1728940727239" duration="418000" />
+      <workItem from="1728986203499" duration="2857000" />
+      <workItem from="1729341838520" duration="6516000" />
+      <workItem from="1729862907674" duration="2117000" />
+      <workItem from="1729865391805" duration="1518000" />
+      <workItem from="1730029814042" duration="8022000" />
     </task>
     <task id="LOCAL-00001" summary="model">
       <option name="closed" value="true" />
@@ -261,7 +284,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728937876241</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Controllers are using DTO now (ModelMapper)">
+      <option name="closed" value="true" />
+      <created>1728989319351</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1728989319352</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -290,6 +321,7 @@
     <MESSAGE value="song -&gt; genre" />
     <MESSAGE value="Dockerfile and docker-compose.yml added" />
     <MESSAGE value="@RequiredArgsConstructor was added" />
-    <option name="LAST_COMMIT_MESSAGE" value="@RequiredArgsConstructor was added" />
+    <MESSAGE value="Controllers are using DTO now (ModelMapper)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Controllers are using DTO now (ModelMapper)" />
   </component>
 </project>

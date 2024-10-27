@@ -7,8 +7,9 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/musichub
       SPRING_DATASOURCE_USERNAME: postgres
       SPRING_DATASOURCE_PASSWORD: postgres
-      spring.jpa.hibernate.ddl-auto: update
-      spring.jpa.database-platform: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
+      SPRING_THYMELEAF_CACHE: false
     depends_on:
       - db
 

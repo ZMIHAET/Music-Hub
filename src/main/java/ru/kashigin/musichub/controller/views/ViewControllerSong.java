@@ -33,12 +33,12 @@ public class ViewControllerSong {
             songService.addAlbum(song, albumId);
         if (artistId != null)
             songService.addArtist(song, artistId);
-        model.addAttribute("song", song);
+        model.addAttribute("song", new SongDto());
         model.addAttribute("genres", genreService.getAllGenres());
         return "son/addSong";
     }
     @PostMapping("/songs/new")
-    public String addSongSubmit(@ModelAttribute @Valid SongDto songDto, BindingResult bindingResult,
+    public String addSongSubmit(@ModelAttribute("song") @Valid SongDto songDto, BindingResult bindingResult,
                                 @RequestParam Long genreId){
         Song song = songService.convertToSong(songDto);
         if (bindingResult.hasErrors())

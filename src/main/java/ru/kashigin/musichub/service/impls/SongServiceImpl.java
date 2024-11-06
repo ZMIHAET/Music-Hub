@@ -14,8 +14,10 @@ import ru.kashigin.musichub.repository.ArtistRepository;
 import ru.kashigin.musichub.repository.GenreRepository;
 import ru.kashigin.musichub.repository.SongRepository;
 import ru.kashigin.musichub.service.SongService;
+import ru.kashigin.musichub.service.mappers.SongMapper;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,7 +26,6 @@ public class SongServiceImpl implements SongService {
     private final AlbumRepository albumRepository;
     private final ArtistRepository artistRepository;
     private final GenreRepository genreRepository;
-    private final ModelMapper modelMapper;
 
     @Override
     public List<Song> getAllSongs() {
@@ -32,8 +33,8 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
-    public Song getSongById(Long id) {
-        return songRepository.findById(id).orElse(null);
+    public Optional<Song> getSongById(Long id) {
+        return songRepository.findById(id);
     }
 
     @Override
@@ -50,19 +51,19 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public Song updateSong(Long id, Song song) {
-        Song existingSong = getSongById(id);
-        if (existingSong != null) {
-            existingSong.setName(song.getName());
-            existingSong.setRelease(song.getRelease());
-            existingSong.setDuration(song.getDuration());
-            existingSong.setGenre(song.getGenre());
+        Optional<Song> existingSong = getSongById(id);
+        if (existingSong.isPresent()) {
+            existingSong.get().setName(song.getName());
+            existingSong.get().setRelease(song.getRelease());
+            existingSong.get().setDuration(song.getDuration());
+            existingSong.get().setGenre(song.getGenre());
             if (song.getAlbum() == null || song.getAlbum().getAlbumId() == null) {
                 song.setAlbum(null);
             }
             if (song.getArtist() == null || song.getArtist().getArtistId() == null) {
                 song.setArtist(null);
             }
-            songRepository.save(existingSong);
+            songRepository.save(existingSong.get());
         }
         return null;
     }
@@ -74,11 +75,14 @@ public class SongServiceImpl implements SongService {
 
     @Override
     @Transactional
-    public void addAlbum(Song song, Long albumId) {
+    public void addAlbum(SongDto songDto, Long albumId) {
         if (albumId != null) {
             Album album = albumRepository.findById(albumId)
                     .orElseThrow(() -> new IllegalArgumentException("Album not found"));
+            Song song = convertToSong(songDto);
             song.setAlbum(album);
+
+            songDto.setAlbum(album);
 
             album.getSongs().add(song);
             albumRepository.save(album);
@@ -87,11 +91,14 @@ public class SongServiceImpl implements SongService {
 
     @Override
     @Transactional
-    public void addArtist(Song song, Long artistId) {
+    public void addArtist(SongDto songDto, Long artistId) {
         if (artistId != null) {
             Artist artist = artistRepository.findById(artistId)
                     .orElseThrow(() -> new IllegalArgumentException("Artist not found"));
+            Song song = convertToSong(songDto);
             song.setArtist(artist);
+
+            songDto.setArtist(artist);
 
             artist.getSongs().add(song);
             artistRepository.save(artist);
@@ -115,6 +122,6 @@ public class SongServiceImpl implements SongService {
 
     @Override
     public Song convertToSong(SongDto songDto) {
-        return modelMapper.map(songDto, Song.class);
+        return SongMapper.INSTANCE.convertToSong(songDto);
     }
 }

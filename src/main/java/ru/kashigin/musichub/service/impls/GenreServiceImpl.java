@@ -7,6 +7,7 @@ import ru.kashigin.musichub.dto.GenreDto;
 import ru.kashigin.musichub.model.Genre;
 import ru.kashigin.musichub.repository.GenreRepository;
 import ru.kashigin.musichub.service.GenreService;
+import ru.kashigin.musichub.service.mappers.GenreMapper;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,7 +16,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class GenreServiceImpl implements GenreService {
     private final GenreRepository genreRepository;
-    private final ModelMapper modelMapper;
 
     @Override
     public List<Genre> getAllGenres() {
@@ -23,8 +23,8 @@ public class GenreServiceImpl implements GenreService {
     }
 
     @Override
-    public Genre getGenreById(Long id) {
-        return genreRepository.findById(id).orElse(null);
+    public Optional<Genre> getGenreById(Long id) {
+        return genreRepository.findById(id);
     }
 
     @Override
@@ -34,12 +34,12 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public Genre updateGenre(Long id, Genre genre) {
-        Genre existingGenre = getGenreById(id);
-        if (existingGenre != null){
-            existingGenre.setName(genre.getName());
-            existingGenre.setDescription(genre.getDescription());
+        Optional<Genre> existingGenre = getGenreById(id);
+        if (existingGenre.isPresent()){
+            existingGenre.get().setName(genre.getName());
+            existingGenre.get().setDescription(genre.getDescription());
 
-            return genreRepository.save(existingGenre);
+            return genreRepository.save(existingGenre.get());
         }
         return null;
     }
@@ -51,6 +51,6 @@ public class GenreServiceImpl implements GenreService {
 
     @Override
     public Genre convertToGenre(GenreDto genreDto) {
-        return modelMapper.map(genreDto, Genre.class);
+        return GenreMapper.INSTANCE.convertToGenre(genreDto);
     }
 }

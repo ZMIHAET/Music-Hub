@@ -11,6 +11,7 @@ import ru.kashigin.musichub.model.Person;
 import ru.kashigin.musichub.service.PersonService;
 
 import java.time.LocalDate;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -43,19 +44,19 @@ public class ViewControllerPerson {
 
     @GetMapping("/people/{id}")
     public String viewPerson(@PathVariable("id") Long id, Model model){
-        Person person = personService.getPersonById(id);
-        if (person == null)
+        Optional<Person> person = personService.getPersonById(id);
+        if (person.isEmpty())
             throw new RuntimeException("Person not found");
-        model.addAttribute("person", person);
+        model.addAttribute("person", person.get());
         return "per/personDetails";
     }
 
     @GetMapping("/people/{id}/edit")
     public String editPerson(@PathVariable("id") Long id, Model model){
-        Person person = personService.getPersonById(id);
-        if (person == null)
+        Optional<Person> person = personService.getPersonById(id);
+        if (person.isEmpty())
             throw new RuntimeException("Person not found");
-        model.addAttribute("person", person);
+        model.addAttribute("person", person.get());
         return "per/editPerson";
     }
 
@@ -65,7 +66,7 @@ public class ViewControllerPerson {
         Person person = personService.convertToPerson(personDto);
         if (bindingResult.hasErrors())
             return "per/editPerson";
-        if (personService.getPersonById(id) == null)
+        if (personService.getPersonById(id).isEmpty())
             throw new RuntimeException("Person not found");
 
         personService.updatePerson(id, person);

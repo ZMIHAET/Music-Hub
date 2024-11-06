@@ -10,15 +10,16 @@ import ru.kashigin.musichub.model.Artist;
 import ru.kashigin.musichub.repository.AlbumRepository;
 import ru.kashigin.musichub.repository.ArtistRepository;
 import ru.kashigin.musichub.service.AlbumService;
+import ru.kashigin.musichub.service.mappers.AlbumMapper;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class AlbumServiceImpl implements AlbumService {
     private final AlbumRepository albumRepository;
     private final ArtistRepository artistRepository;
-    private final ModelMapper modelMapper;
 
     @Override
     public List<Album> getAllAlbums() {
@@ -26,8 +27,8 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public Album getAlbumById(Long id) {
-        return albumRepository.findById(id).orElse(null);
+    public Optional<Album> getAlbumById(Long id) {
+        return albumRepository.findById(id);
     }
 
     @Override
@@ -40,15 +41,15 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public Album updateAlbum(Long id, Album album) {
-        Album existingAlbum = getAlbumById(id);
-        if (existingAlbum != null){
-            existingAlbum.setName(album.getName());
-            existingAlbum.setRelease(album.getRelease());
+        Optional<Album> existingAlbum = getAlbumById(id);
+        if (existingAlbum.isPresent()){
+            existingAlbum.get().setName(album.getName());
+            existingAlbum.get().setRelease(album.getRelease());
 
             if (album.getArtist() == null || album.getArtist().getArtistId() == null)
                 album.setArtist(null);
 
-            return albumRepository.save(existingAlbum);
+            return albumRepository.save(existingAlbum.get());
         }
         return null;
     }
@@ -60,11 +61,16 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     @Transactional
-    public void addArtist(Album album, Long artistId) {
+    public void addArtist(AlbumDto albumDto, Long artistId) {
         if (artistId != null){
             Artist artist = artistRepository.findById(artistId)
                     .orElseThrow(() -> new IllegalArgumentException("Artist not found"));
+
+            Album album = convertToAlbum(albumDto);
+
             album.setArtist(artist);
+
+            albumDto.setArtist(artist);
 
             artist.getAlbums().add(album);
             artistRepository.save(artist);
@@ -73,6 +79,6 @@ public class AlbumServiceImpl implements AlbumService {
 
     @Override
     public Album convertToAlbum(AlbumDto aLbumDto) {
-        return modelMapper.map(aLbumDto, Album.class);
+        return AlbumMapper.INSTANCE.convertToAlbum(aLbumDto);
     }
 }

@@ -12,6 +12,8 @@ import ru.kashigin.musichub.model.Playlist;
 import ru.kashigin.musichub.service.PersonService;
 import ru.kashigin.musichub.service.PlaylistService;
 
+import java.util.Optional;
+
 @Controller
 @RequiredArgsConstructor
 public class ViewControllerPlaylist {
@@ -25,10 +27,10 @@ public class ViewControllerPlaylist {
 
     @GetMapping("/playlists/new")
     public String addPlaylist(Model model, @RequestParam(required = false) Long personId){
-        Playlist playlist = new Playlist();
+        PlaylistDto playlistDto = new PlaylistDto();
         if (personId != null)
-            playlistService.addOwner(playlist, personId);
-        model.addAttribute("playlist", new PlaylistDto());
+            playlistService.addOwner(playlistDto, personId);
+        model.addAttribute("playlist", playlistDto);
         return "pla/addPlaylist";
     }
 
@@ -43,29 +45,28 @@ public class ViewControllerPlaylist {
 
     @GetMapping("/playlists/{id}")
     public String viewPlaylist(@PathVariable("id") Long id, Model model){
-        Playlist playlist = playlistService.getPlaylistById(id);
-        if (playlist == null)
+        Optional<Playlist> playlist = playlistService.getPlaylistById(id);
+        if (playlist.isEmpty())
             throw new RuntimeException("Playlist not found");
-        model.addAttribute("playlist", playlist);
+        model.addAttribute("playlist", playlist.get());
         return "pla/playlistDetails";
     }
 
     @GetMapping("/playlists/{id}/edit")
     public String editPlaylist(@PathVariable("id") Long id, Model model){
-        Playlist playlist = playlistService.getPlaylistById(id);
-        if (playlist == null)
+        Optional<Playlist> playlist = playlistService.getPlaylistById(id);
+        if (playlist.isEmpty())
             throw new RuntimeException("Playlist not found");
-        model.addAttribute("playlist", playlist);
+        model.addAttribute("playlist", playlist.get());
         return "pla/editPlaylist";
     }
 
     @PostMapping("/playlists/{id}/edit")
-    public String editPlaylistSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid PlaylistDto playlistDto,
+    public String editPlaylistSubmit(@PathVariable("id") Long id, @ModelAttribute @Valid Playlist playlist,
                                   BindingResult bindingResult){
-        Playlist playlist = playlistService.convertToPlaylist(playlistDto);
         if (bindingResult.hasErrors())
             return "pla/editPlaylist";
-        if (playlistService.getPlaylistById(id) == null)
+        if (playlistService.getPlaylistById(id).isEmpty())
             throw new RuntimeException("Playlist not found");
 
         playlistService.updatePlaylist(id, playlist);

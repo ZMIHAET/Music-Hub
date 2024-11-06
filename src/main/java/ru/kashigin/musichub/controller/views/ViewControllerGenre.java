@@ -11,6 +11,8 @@ import ru.kashigin.musichub.dto.GenreDto;
 import ru.kashigin.musichub.model.Genre;
 import ru.kashigin.musichub.service.GenreService;
 
+import java.util.Optional;
+
 @Controller
 @RequiredArgsConstructor
 public class ViewControllerGenre {
@@ -39,19 +41,19 @@ public class ViewControllerGenre {
 
     @GetMapping("/genres/{id}")
     public String viewGenre(@PathVariable("id") Long id, Model model){
-        Genre genre = genreService.getGenreById(id);
-        if (genre == null)
+        Optional<Genre> genre = genreService.getGenreById(id);
+        if (genre.isEmpty())
             throw new RuntimeException("Genre not found");
-        model.addAttribute("genre", genre);
+        model.addAttribute("genre", genre.get());
         return "gen/genreDetails";
     }
 
     @GetMapping("/genres/{id}/edit")
     public String editGenre(@PathVariable("id") Long id, Model model){
-        Genre genre = genreService.getGenreById(id);
-        if (genre == null)
+        Optional<Genre> genre = genreService.getGenreById(id);
+        if (genre.isEmpty())
             throw new RuntimeException("Genre not found");
-        model.addAttribute("genre", genre);
+        model.addAttribute("genre", genre.get());
         return "gen/editGenre";
     }
 
@@ -61,7 +63,7 @@ public class ViewControllerGenre {
         Genre genre = genreService.convertToGenre(genreDto);
         if (bindingResult.hasErrors())
             return "gen/editGenre";
-        if (genreService.getGenreById(id) == null)
+        if (genreService.getGenreById(id).isEmpty())
             throw new RuntimeException("Genre not found");
 
         genreService.updateGenre(id, genre);

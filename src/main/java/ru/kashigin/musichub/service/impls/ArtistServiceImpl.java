@@ -6,31 +6,36 @@ import io.minio.RemoveObjectArgs;
 
 import io.minio.errors.MinioException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import ru.kashigin.musichub.dto.ArtistDto;
 import ru.kashigin.musichub.model.Artist;
 import ru.kashigin.musichub.repository.ArtistRepository;
 import ru.kashigin.musichub.service.ArtistService;
+import ru.kashigin.musichub.service.mappers.ArtistMapper;
 
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
+import java.util.Optional;
 import java.util.UUID;
-import java.io.InputStream;
+
 
 
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class ArtistServiceImpl implements ArtistService {
     private final ArtistRepository artistRepository;
-    private final ModelMapper modelMapper;
     private final MinioClient minioClient;
 
-    private final String bucketName = "artist-photos";
+    @Value("${bucket.name}")
+    private String bucketName;
 
     @Override
     public List<Artist> getAllArtists() {
@@ -38,12 +43,14 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
-    public Artist getArtistById(Long id) {
-        return artistRepository.findById(id).orElse(null);
+    public Optional<Artist> getArtistById(Long id) {
+        return artistRepository.findById(id);
     }
 
     @Override
     public Artist createArtist(Artist artist, MultipartFile photo) {
+        if (photo.isEmpty())
+            throw new RuntimeException("Photo was not upload");
         String photoName = UUID.randomUUID() + "-" + Objects.requireNonNull(photo.getOriginalFilename());
 
         try {
@@ -55,7 +62,7 @@ public class ArtistServiceImpl implements ArtistService {
                             .contentType(photo.getContentType())       // MIME-тип файла
                             .build()
             );
-            System.out.println("Файл успешно загружен в MinIO с именем: " + photoName);
+            log.info("Файл успешно загружен в MinIO с именем: " + photoName);
         } catch (MinioException e) {
             System.err.println("Ошибка при работе с MinIO: " + e.getMessage());
             e.printStackTrace();
@@ -74,10 +81,10 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public Artist updateArtist(Long id, Artist artist, MultipartFile photo) {
-        Artist existingArtist = getArtistById(id);
-        if (existingArtist != null) {
-            existingArtist.setName(artist.getName());
-            existingArtist.setBio(artist.getBio());
+        Optional<Artist> existingArtist = getArtistById(id);
+        if (existingArtist.isPresent()) {
+            existingArtist.get().setName(artist.getName());
+            existingArtist.get().setBio(artist.getBio());
 
             if (photo != null && !photo.isEmpty()) {
                 // Генерируем уникальное имя файла
@@ -95,14 +102,14 @@ public class ArtistServiceImpl implements ArtistService {
                     );
 
                     // Удаляем старую фотографию из MinIO, если она есть
-                    if (existingArtist.getPhoto() != null) {
+                    if (existingArtist.get().getPhoto() != null) {
                         minioClient.removeObject(RemoveObjectArgs.builder()
                                 .bucket(bucketName)
-                                .object(existingArtist.getPhoto())
+                                .object(existingArtist.get().getPhoto())
                                 .build());
                     }
 
-                    existingArtist.setPhoto(photoName);
+                    existingArtist.get().setPhoto(photoName);
 
                 } catch (MinioException e) {
                     System.err.println("Ошибка при работе с MinIO: " + e.getMessage());
@@ -116,7 +123,7 @@ public class ArtistServiceImpl implements ArtistService {
                 }
             }
 
-            return artistRepository.save(existingArtist);
+            return artistRepository.save(existingArtist.get());
         }
 
         return null;
@@ -129,6 +136,6 @@ public class ArtistServiceImpl implements ArtistService {
 
     @Override
     public Artist convertToArtist(ArtistDto artistDto) {
-        return modelMapper.map(artistDto, Artist.class);
+        return ArtistMapper.INSTANCE.convertToArtist(artistDto);
     }
 }

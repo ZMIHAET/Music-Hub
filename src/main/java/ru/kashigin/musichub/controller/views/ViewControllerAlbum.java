@@ -10,6 +10,8 @@ import ru.kashigin.musichub.dto.AlbumDto;
 import ru.kashigin.musichub.model.Album;
 import ru.kashigin.musichub.service.AlbumService;
 
+import java.util.Optional;
+
 @Controller
 @RequiredArgsConstructor
 public class ViewControllerAlbum {
@@ -23,10 +25,10 @@ public class ViewControllerAlbum {
 
     @GetMapping("/albums/new")
     public String addAlbum(Model model, @RequestParam(required = false) Long artistId){
-        Album album = new Album();
+        AlbumDto albumDto = new AlbumDto();
         if (artistId != null)
-            albumService.addArtist(album, artistId);
-        model.addAttribute("album", new AlbumDto());
+            albumService.addArtist(albumDto, artistId);
+        model.addAttribute("album", albumDto);
         return "alb/addAlbum";
     }
 
@@ -41,19 +43,19 @@ public class ViewControllerAlbum {
 
     @GetMapping("/albums/{id}")
     public String viewAlbum(@PathVariable("id") Long id, Model model){
-        Album album = albumService.getAlbumById(id);
-        if (album == null)
+        Optional<Album> album = albumService.getAlbumById(id);
+        if (album.isEmpty())
             throw new RuntimeException("Album not found");
-        model.addAttribute("album", album);
+        model.addAttribute("album", album.get());
         return "alb/albumDetails";
     }
 
     @GetMapping("/albums/{id}/edit")
     public String editAlbum(@PathVariable("id") Long id, Model model){
-        Album album = albumService.getAlbumById(id);
-        if (album == null)
+        Optional<Album> album = albumService.getAlbumById(id);
+        if (album.isEmpty())
             throw new RuntimeException("Album not found");
-        model.addAttribute("album", album);
+        model.addAttribute("album", album.get());
         return "alb/editAlbum";
     }
 
@@ -63,7 +65,7 @@ public class ViewControllerAlbum {
         Album album = albumService.convertToAlbum(albumDto);
         if (bindingResult.hasErrors())
             return "alb/editAlbum";
-        if (albumService.getAlbumById(id) == null)
+        if (albumService.getAlbumById(id).isEmpty())
             throw new RuntimeException("Album not found");
         albumService.updateAlbum(id, album);
         return "redirect:/albums/" + id;

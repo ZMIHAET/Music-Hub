@@ -2,6 +2,7 @@ package ru.kashigin.musichub.controller.views;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import io.minio.MinioClient;
 import io.minio.GetObjectArgs;
 import java.io.InputStream;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -53,12 +55,12 @@ public class ViewControllerArtist {
 
     @GetMapping("/artists/{id}")
     public String viewArtist(@PathVariable("id") Long id, Model model){
-        Artist artist = artistService.getArtistById(id);
-        if (artist == null)
+        Optional<Artist> artist = artistService.getArtistById(id);
+        if (artist.isEmpty())
             throw new RuntimeException("Artist not found");
 
-        model.addAttribute("artist", artist);
-        model.addAttribute("photoUrl", "/artists/photo/" + artist.getPhoto());
+        model.addAttribute("artist", artist.get());
+        model.addAttribute("photoUrl", "/artists/photo/" + artist.get().getPhoto());
         return "art/artistDetails";
     }
     @GetMapping("/artists/photo/{photo}")
@@ -83,10 +85,10 @@ public class ViewControllerArtist {
 
     @GetMapping("/artists/{id}/edit")
     public String editArtist(@PathVariable("id") Long id, Model model){
-        Artist artist = artistService.getArtistById(id);
-        if (artist == null)
+        Optional<Artist> artist = artistService.getArtistById(id);
+        if (artist.isEmpty())
             throw new RuntimeException("Artist not found");
-        model.addAttribute("artist", artist);
+        model.addAttribute("artist", artist.get());
         return "art/editArtist";
     }
 
@@ -97,7 +99,7 @@ public class ViewControllerArtist {
         if (bindingResult.hasErrors())
             return "art/editArtist";
 */
-        if (artistService.getArtistById(id) == null)
+        if (artistService.getArtistById(id).isEmpty())
             throw new RuntimeException("Artist not found");
         artistService.updateArtist(id, artist, photo);
         return "redirect:/artists/" + id;

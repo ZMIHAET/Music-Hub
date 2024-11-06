@@ -10,15 +10,16 @@ import ru.kashigin.musichub.model.Playlist;
 import ru.kashigin.musichub.repository.PersonRepository;
 import ru.kashigin.musichub.repository.PlaylistRepository;
 import ru.kashigin.musichub.service.PlaylistService;
+import ru.kashigin.musichub.service.mappers.PlaylistMapper;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class PlaylistServiceImpl implements PlaylistService {
     private final PlaylistRepository playlistRepository;
     private final PersonRepository personRepository;
-    private final ModelMapper modelMapper;
 
     @Override
     public List<Playlist> getAllPlaylists() {
@@ -26,8 +27,8 @@ public class PlaylistServiceImpl implements PlaylistService {
     }
 
     @Override
-    public Playlist getPlaylistById(Long id) {
-        return playlistRepository.findById(id).orElse(null);
+    public Optional<Playlist> getPlaylistById(Long id) {
+        return playlistRepository.findById(id);
     }
 
     @Override
@@ -39,15 +40,16 @@ public class PlaylistServiceImpl implements PlaylistService {
 
     @Override
     public Playlist updatePlaylist(Long id, Playlist playlist) {
-        Playlist existingPlaylist = getPlaylistById(id);
-        if (existingPlaylist != null){
-            existingPlaylist.setName(playlist.getName());
-            existingPlaylist.setDescription(playlist.getDescription());
+        Optional<Playlist> existingPlaylist = getPlaylistById(id);
+        if (existingPlaylist.isPresent()){
+            existingPlaylist.get().setName(playlist.getName());
+            existingPlaylist.get().setDescription(playlist.getDescription());
+
 
             if (playlist.getOwner() == null || playlist.getOwner().getPersonId() == null)
-                existingPlaylist.setOwner(null);
+                existingPlaylist.get().setOwner(null);
 
-            playlistRepository.save(existingPlaylist);
+            playlistRepository.save(existingPlaylist.get());
         }
         return null;
     }
@@ -59,12 +61,16 @@ public class PlaylistServiceImpl implements PlaylistService {
 
     @Override
     @Transactional
-    public void addOwner(Playlist playlist, Long personId) {
+    public void addOwner(PlaylistDto playlistDto, Long personId) {
         if (personId != null) {
             Person owner = personRepository.findById(personId)
                     .orElseThrow(() -> new IllegalArgumentException("Person not found"));
 
+            Playlist playlist = convertToPlaylist(playlistDto);
+
             playlist.setOwner(owner);
+
+            playlistDto.setOwner(owner);
 
             owner.getPlaylists().add(playlist);
             personRepository.save(owner);
@@ -73,6 +79,6 @@ public class PlaylistServiceImpl implements PlaylistService {
 
     @Override
     public Playlist convertToPlaylist(PlaylistDto playlistDto) {
-        return modelMapper.map(playlistDto, Playlist.class);
+        return PlaylistMapper.INSTANCE.convertToPlaylist(playlistDto);
     }
 }

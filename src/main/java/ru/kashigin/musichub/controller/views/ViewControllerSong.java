@@ -14,6 +14,8 @@ import ru.kashigin.musichub.service.ArtistService;
 import ru.kashigin.musichub.service.GenreService;
 import ru.kashigin.musichub.service.SongService;
 
+import java.util.Optional;
+
 @Controller
 @RequiredArgsConstructor
 public class ViewControllerSong {
@@ -28,12 +30,12 @@ public class ViewControllerSong {
     @GetMapping("/songs/new")
     public String addSong(Model model, @RequestParam(required = false) Long albumId,
                           @RequestParam(required = false) Long artistId){
-        Song song = new Song();
+        SongDto songDto = new SongDto();
         if (albumId != null)
-            songService.addAlbum(song, albumId);
+            songService.addAlbum(songDto, albumId);
         if (artistId != null)
-            songService.addArtist(song, artistId);
-        model.addAttribute("song", new SongDto());
+            songService.addArtist(songDto, artistId);
+        model.addAttribute("song", songDto);
         model.addAttribute("genres", genreService.getAllGenres());
         return "son/addSong";
     }
@@ -49,28 +51,28 @@ public class ViewControllerSong {
     }
     @GetMapping("/songs/{id}")
     public String viewSong(@PathVariable("id") Long id, Model model){
-        Song song = songService.getSongById(id);
+        Optional<Song> song = songService.getSongById(id);
         Artist artist = null;
         Genre genre = null;
-        if (song == null)
+        if (song.isEmpty())
             throw new RuntimeException("Song not found");
-        if (song.getArtist() != null && song.getArtist().getArtistId() != null) {
-            artist = song.getArtist();
+        if (song.get().getArtist() != null && song.get().getArtist().getArtistId() != null) {
+            artist = song.get().getArtist();
         }
-        if (song.getGenre() != null && song.getGenre().getGenreId() != null){
-            genre = song.getGenre();
+        if (song.get().getGenre() != null && song.get().getGenre().getGenreId() != null){
+            genre = song.get().getGenre();
         }
-        model.addAttribute("song", song);
+        model.addAttribute("song", song.get());
         model.addAttribute("artist", artist);
         model.addAttribute("genre", genre);
         return "son/songDetails";
     }
     @GetMapping("/songs/{id}/edit")
     public String editSong(@PathVariable("id") Long id, Model model){
-        Song song = songService.getSongById(id);
-        if (song == null)
+        Optional<Song> song = songService.getSongById(id);
+        if (song.isEmpty())
             throw new RuntimeException("Song not found");
-        model.addAttribute("song", song);
+        model.addAttribute("song", song.get());
         model.addAttribute("genres", genreService.getAllGenres());
         return "son/editSong";
     }
@@ -80,7 +82,7 @@ public class ViewControllerSong {
         Song song = songService.convertToSong(songDto);
         if (bindingResult.hasErrors())
             return "son/editSong";
-        if (songService.getSongById(id) == null)
+        if (songService.getSongById(id).isEmpty())
             throw new RuntimeException("Song not found");
         songService.setGenre(song, genreId);
         songService.updateSong(id, song);

@@ -32,12 +32,12 @@ public class Person {
 
     @NotEmpty(message = "Password should not be empty")
     @Size(min = 8, message = "Password should be at least 8 characters long")
-    @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$",
-            message = "Password must contain at least one digit, one lowercase letter, one uppercase letter, one special character, and no whitespace")
     private String password;
 
     private LocalDate registration;
 
     @OneToMany(mappedBy = "owner")
     private List<Playlist> playlists;
+
+    private String role;
 }

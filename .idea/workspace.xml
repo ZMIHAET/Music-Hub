@@ -4,38 +4,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="Добавил Minio, есть проблема со связями при использовании DTO">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/AlbumMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/ArtistMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/GenreMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/PersonMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/PlaylistMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/SongMapper.java" afterDir="false" />
+    <list default="true" id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="Учтены все правки, исправлена работа с DTO в контроллере">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/configs/SecurityConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/AuthController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerHello.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/dto/AuthenticationDto.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/security/JWTUtil.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/security/PersonDetails.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/PersonDetailsService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/RegistrationService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/PersonDetailsServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/RegistrationServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/util/PersonValidator.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/auth/login.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/auth/registration.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/templates/hello.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/MusicHubApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/MusicHubApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/configs/MinioConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/configs/MinioConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerAlbum.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerAlbum.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerArtist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerArtist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerGenre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerGenre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerPerson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerPerson.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerPlaylist.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerPlaylist.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerSong.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/views/ViewControllerSong.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/AlbumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/AlbumService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/ArtistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/ArtistService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/GenreService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/GenreService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/PersonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/PlaylistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/PlaylistService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/SongService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/SongService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/AlbumServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/AlbumServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/ArtistServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/ArtistServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/GenreServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/GenreServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/dto/PersonDto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/dto/PersonDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/model/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/model/Person.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/repository/PersonRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/repository/PersonRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/PersonServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/PersonServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/PlaylistServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/PlaylistServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/SongServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/SongServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/pla/editPlaylist.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/pla/editPlaylist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/per/persons.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/per/persons.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,10 +36,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Dockerfile" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="HTML File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -194,7 +185,14 @@
       <workItem from="1730541634409" duration="3052000" />
       <workItem from="1730743066083" duration="3692000" />
       <workItem from="1730800420906" duration="4308000" />
-      <workItem from="1730917067363" duration="5060000" />
+      <workItem from="1730917067363" duration="6322000" />
+      <workItem from="1731078928734" duration="10231000" />
+      <workItem from="1731237854462" duration="6387000" />
+      <workItem from="1731318300255" duration="5027000" />
+      <workItem from="1731353396172" duration="1362000" />
+      <workItem from="1731403423147" duration="1635000" />
+      <workItem from="1731744868407" duration="1220000" />
+      <workItem from="1731773271126" duration="2204000" />
     </task>
     <task id="LOCAL-00001" summary="model">
       <option name="closed" value="true" />
@@ -316,7 +314,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730038396173</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Учтены все правки, исправлена работа с DTO в контроллере">
+      <option name="closed" value="true" />
+      <created>1730923274871</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1730923274871</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -360,6 +366,7 @@
     <MESSAGE value="@RequiredArgsConstructor was added" />
     <MESSAGE value="Controllers are using DTO now (ModelMapper)" />
     <MESSAGE value="Добавил Minio, есть проблема со связями при использовании DTO" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавил Minio, есть проблема со связями при использовании DTO" />
+    <MESSAGE value="Учтены все правки, исправлена работа с DTO в контроллере" />
+    <option name="LAST_COMMIT_MESSAGE" value="Учтены все правки, исправлена работа с DTO в контроллере" />
   </component>
 </project>

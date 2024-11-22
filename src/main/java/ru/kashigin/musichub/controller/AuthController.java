@@ -2,17 +2,24 @@ package ru.kashigin.musichub.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import ru.kashigin.musichub.dto.AuthenticationDto;
 import ru.kashigin.musichub.model.Person;
+import ru.kashigin.musichub.security.JWTUtil;
+import ru.kashigin.musichub.security.PersonDetails;
+import ru.kashigin.musichub.service.PersonDetailsService;
 import ru.kashigin.musichub.service.RegistrationService;
 import ru.kashigin.musichub.util.PersonValidator;
 
 import java.time.LocalDate;
+import java.util.Map;
 
 @Controller
 @RequestMapping("/auth")
@@ -20,6 +27,9 @@ import java.time.LocalDate;
 public class AuthController {
     private final PersonValidator personValidator;
     private final RegistrationService registrationService;
+    private final AuthenticationManager authenticationManager;
+    private final PersonDetailsService personDetailsService;
+    private final JWTUtil jwtUtil;
     @GetMapping("/login")
     public String loginPage(){
         return "auth/login";
@@ -42,5 +52,17 @@ public class AuthController {
 
 
         return "redirect:/auth/login";
+    }
+    @PostMapping("/login")
+    public ResponseEntity<?> createAuthenticationToken(@RequestBody AuthenticationDto authenticationDto){
+        authenticationManager.authenticate(
+                new UsernamePasswordAuthenticationToken(authenticationDto.getName(), authenticationDto.getPassword())
+        );
+        final UserDetails userDetails = personDetailsService
+                .loadUserByUsername(authenticationDto.getName());
+
+        final String jwt = jwtUtil.generateToken(userDetails.getUsername());
+
+        return ResponseEntity.ok(Map.of("jwt-token", jwt));
     }
 }

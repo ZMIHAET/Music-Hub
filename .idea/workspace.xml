@@ -4,14 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="Security без рабочего JWT">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/config/JWTRequestFilter.java" afterDir="false" />
+    <list default="true" id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="Добавлен JWT">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/config/RabbitMQConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/RegistrationConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/RegistrationProducer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/configs/MinioConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/config/MinioConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/configs/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/config/SecurityConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/security/JWTUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/security/JWTUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/templates/auth/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/templates/auth/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +181,9 @@
       <workItem from="1731794633591" duration="1527000" />
       <workItem from="1731877862525" duration="1915000" />
       <workItem from="1732039601280" duration="1014000" />
-      <workItem from="1732297673006" duration="3699000" />
+      <workItem from="1732297673006" duration="4342000" />
+      <workItem from="1732539965365" duration="1127000" />
+      <workItem from="1732564189854" duration="1519000" />
     </task>
     <task id="LOCAL-00001" summary="model">
       <option name="closed" value="true" />
@@ -319,7 +321,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731775711471</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Добавлен JWT">
+      <option name="closed" value="true" />
+      <created>1732301974828</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1732301974828</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -365,6 +375,7 @@
     <MESSAGE value="Добавил Minio, есть проблема со связями при использовании DTO" />
     <MESSAGE value="Учтены все правки, исправлена работа с DTO в контроллере" />
     <MESSAGE value="Security без рабочего JWT" />
-    <option name="LAST_COMMIT_MESSAGE" value="Security без рабочего JWT" />
+    <MESSAGE value="Добавлен JWT" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлен JWT" />
   </component>
 </project>

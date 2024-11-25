@@ -16,6 +16,7 @@ import ru.kashigin.musichub.security.JWTUtil;
 import ru.kashigin.musichub.security.PersonDetails;
 import ru.kashigin.musichub.service.PersonDetailsService;
 import ru.kashigin.musichub.service.RegistrationService;
+import ru.kashigin.musichub.service.rabbit.RegistrationProducer;
 import ru.kashigin.musichub.util.PersonValidator;
 
 import java.time.LocalDate;
@@ -30,6 +31,7 @@ public class AuthController {
     private final AuthenticationManager authenticationManager;
     private final PersonDetailsService personDetailsService;
     private final JWTUtil jwtUtil;
+    private final RegistrationProducer registrationProducer;
     @GetMapping("/login")
     public String loginPage(){
         return "auth/login";
@@ -50,6 +52,7 @@ public class AuthController {
 
         registrationService.register(person);
 
+        registrationProducer.sendRegistrationMessage("User registered: " + person.getName());
 
         return "redirect:/auth/login";
     }

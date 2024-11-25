@@ -10,6 +10,16 @@ services:
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_DATABASE_PLATFORM: org.hibernate.dialect.PostgreSQLDialect
       SPRING_THYMELEAF_CACHE: false
+
+      BUCKET_NAME: artist-photos
+      ENDPOINT: http://localhost:9000
+      ACCESS_KEY: myaccesskey
+      SECRET_KEY: mysecretkey
+      SECRET_JWT: secretKeyForJWTToken
+      SPRING_RABBITMQ_HOST: localhost
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: guest
+      SPRING_RABBITMQ_PASSWORD: guest
     depends_on:
       - db
 

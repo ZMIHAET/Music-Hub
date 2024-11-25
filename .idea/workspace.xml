@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="Добавлен JWT">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/config/RabbitMQConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/RegistrationConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/RegistrationProducer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.properties" afterDir="false" />
+    <list default="true" id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="Использование RabbitMq">
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,7 +177,7 @@
       <workItem from="1732039601280" duration="1014000" />
       <workItem from="1732297673006" duration="4342000" />
       <workItem from="1732539965365" duration="1127000" />
-      <workItem from="1732564189854" duration="1519000" />
+      <workItem from="1732564189854" duration="1836000" />
     </task>
     <task id="LOCAL-00001" summary="model">
       <option name="closed" value="true" />
@@ -329,7 +323,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732301974828</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Использование RabbitMq">
+      <option name="closed" value="true" />
+      <created>1732565895594</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1732565895594</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -376,6 +378,7 @@
     <MESSAGE value="Учтены все правки, исправлена работа с DTO в контроллере" />
     <MESSAGE value="Security без рабочего JWT" />
     <MESSAGE value="Добавлен JWT" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавлен JWT" />
+    <MESSAGE value="Использование RabbitMq" />
+    <option name="LAST_COMMIT_MESSAGE" value="Использование RabbitMq" />
   </component>
 </project>

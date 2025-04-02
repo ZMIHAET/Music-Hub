@@ -1,8 +1,8 @@
 package ru.kashigin.musichub.service.impls;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.kashigin.musichub.dto.AlbumDto;
 import ru.kashigin.musichub.model.Album;
@@ -14,6 +14,7 @@ import ru.kashigin.musichub.service.mappers.AlbumMapper;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -27,20 +28,41 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
+    public List<AlbumDto> getAllAlbumsApi() {
+        return albumRepository.findAll().stream()
+                .map(this::convertToAlbumDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public Optional<Album> getAlbumById(Long id) {
         return albumRepository.findById(id);
     }
 
     @Override
-    public Album createAlbum(Album album) {
-        if (album.getArtist() == null || album.getArtist().getArtistId() == null)
-            album.setArtist(null);
-
-        return albumRepository.save(album);
+    public Optional<AlbumDto> getAlbumByIdApi(Long id) {
+        return albumRepository.findById(id)
+                .map(this::convertToAlbumDto);
     }
 
     @Override
-    public Album updateAlbum(Long id, Album album) {
+    public void createAlbum(Album album) {
+        if (album.getArtist() == null || album.getArtist().getArtistId() == null)
+            album.setArtist(null);
+
+        albumRepository.save(album);
+    }
+
+    @Override
+    public AlbumDto createAlbum(AlbumDto albumDto) {
+        Album album = convertToAlbum(albumDto);
+
+        Album saved = albumRepository.save(album);
+        return convertToAlbumDto(saved);
+    }
+
+    @Override
+    public void updateAlbum(Long id, Album album) {
         Optional<Album> existingAlbum = getAlbumById(id);
         if (existingAlbum.isPresent()){
             existingAlbum.get().setName(album.getName());
@@ -49,9 +71,21 @@ public class AlbumServiceImpl implements AlbumService {
             if (album.getArtist() == null || album.getArtist().getArtistId() == null)
                 album.setArtist(null);
 
-            return albumRepository.save(existingAlbum.get());
+            albumRepository.save(existingAlbum.get());
         }
-        return null;
+    }
+
+    @Override
+    public AlbumDto updateAlbum(Long id, AlbumDto albumDto) {
+        Album album = albumRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+
+        album.setName(albumDto.getName());
+        album.setRelease(albumDto.getRelease());
+        album.setArtist(albumDto.getArtist());
+
+        Album updated = albumRepository.save(album);
+        return convertToAlbumDto(updated);
     }
 
     @Override
@@ -78,7 +112,12 @@ public class AlbumServiceImpl implements AlbumService {
     }
 
     @Override
-    public Album convertToAlbum(AlbumDto aLbumDto) {
-        return AlbumMapper.INSTANCE.convertToAlbum(aLbumDto);
+    public Album convertToAlbum(AlbumDto albumDto) {
+        return AlbumMapper.INSTANCE.convertToAlbum(albumDto);
+    }
+
+    @Override
+    public AlbumDto convertToAlbumDto(Album album) {
+        return AlbumMapper.INSTANCE.convertToAlbumDto(album);
     }
 }

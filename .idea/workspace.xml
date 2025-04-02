@@ -4,8 +4,53 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="Использование RabbitMq">
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+    <list default="true" id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="Добавлено RestApi">
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/api/AlbumController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/api/PersonController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/api/PlaylistController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/api/SongController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/DateConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/DateMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/java/ru/kashigin/MusicHubPA/MusicHubPAApplication.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/java/ru/kashigin/MusicHubPA/config/RabbitMQConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/java/ru/kashigin/MusicHubPA/service/rabbit/DateMessage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/java/ru/kashigin/MusicHubPA/service/rabbit/Message.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/java/ru/kashigin/MusicHubPA/service/rabbit/RegistrationConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/webapp/WEB-INF/applicationContextMVC.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/config/RabbitMQConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/config/RabbitMQConfig.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/AuthController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/repository/PlaylistRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/repository/PlaylistRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/AlbumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/AlbumService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/PersonService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/PlaylistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/PlaylistService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/SongService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/SongService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/AlbumServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/AlbumServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/ArtistServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/ArtistServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/GenreServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/GenreServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/PersonServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/PersonServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/PlaylistServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/PlaylistServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/RegistrationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/RegistrationServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/SongServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/SongServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/AlbumMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/AlbumMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/PersonMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/PersonMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/PlaylistMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/PlaylistMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/SongMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/SongMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/RegistrationConsumer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/RegistrationProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/RegistrationProducer.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,54 +61,69 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
-        <option value="Interface" />
         <option value="HTML File" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../MusicHubPA" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2m9bHln4ojuQNEjRJYpxtpThhKw" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_MARK_IGNORED_FILES_AS_EXCLUDED&quot;: &quot;true&quot;,
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Kirill/Desktop/MusicHub/src/main/webapp/WEB-INF&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Downloaded.Files.Path.Enabled": "false",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "master",
+    "jdk.selected.JAVA_MODULE": "openjdk-21",
+    "last_opened_file_path": "C:/Users/Kirill/Desktop/MusicHubPA",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;postgresql&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
     ],
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;Properties&quot;
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "Properties"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\Kirill\Desktop\MusicHub\src\main\webapp\WEB-INF" />
@@ -74,10 +134,22 @@
       <recent name="C:\Users\Kirill\Desktop\MusicHub\src\main\resources" />
     </key>
   </component>
-  <component name="RunManager" selected="Spring Boot.MH">
+  <component name="RunManager" selected="Compound.MusicHubFull">
+    <configuration name="MusicHubFull" type="CompoundRunConfigurationType">
+      <toRun name="MH" type="SpringBootApplicationConfigurationType" />
+      <toRun name="MusicHubPAApplication" type="SpringBootApplicationConfigurationType" />
+      <method v="2" />
+    </configuration>
     <configuration name="MH" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="MusicHub" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="ru.kashigin.musichub.MusicHubApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MusicHubPAApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="MusicHubPA" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="ru.kashigin.MusicHubPA.MusicHubPAApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -99,6 +171,12 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Compound.MusicHubFull" />
+      <item itemvalue="Spring Boot.MusicHubPAApplication" />
+      <item itemvalue="Spring Boot.MH" />
+      <item itemvalue="TestNG.AlbumTest" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="TestNG.AlbumTest" />
@@ -177,7 +255,31 @@
       <workItem from="1732039601280" duration="1014000" />
       <workItem from="1732297673006" duration="4342000" />
       <workItem from="1732539965365" duration="1127000" />
-      <workItem from="1732564189854" duration="1836000" />
+      <workItem from="1732564189854" duration="2195000" />
+      <workItem from="1732946170783" duration="3203000" />
+      <workItem from="1733345144356" duration="2854000" />
+      <workItem from="1733414367829" duration="7511000" />
+      <workItem from="1733429708567" duration="692000" />
+      <workItem from="1733430429426" duration="311000" />
+      <workItem from="1733431459684" duration="30000" />
+      <workItem from="1733431501663" duration="61000" />
+      <workItem from="1733431762982" duration="23000" />
+      <workItem from="1733431792634" duration="6000" />
+      <workItem from="1733431840035" duration="195000" />
+      <workItem from="1733480450984" duration="4158000" />
+      <workItem from="1739715780123" duration="290000" />
+      <workItem from="1739716093352" duration="125000" />
+      <workItem from="1739716256048" duration="740000" />
+      <workItem from="1739717024076" duration="4081000" />
+      <workItem from="1739721969251" duration="2328000" />
+      <workItem from="1739725207253" duration="271000" />
+      <workItem from="1739725688950" duration="1323000" />
+      <workItem from="1741705725063" duration="2494000" />
+      <workItem from="1742291247396" duration="65000" />
+      <workItem from="1743072323482" duration="5776000" />
+      <workItem from="1743259313153" duration="7656000" />
+      <workItem from="1743438895282" duration="5001000" />
+      <workItem from="1743607555198" duration="319000" />
     </task>
     <task id="LOCAL-00001" summary="model">
       <option name="closed" value="true" />
@@ -331,7 +433,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732565895594</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Обновил docker-compose.yml">
+      <option name="closed" value="true" />
+      <created>1732566268113</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1732566268113</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -362,6 +472,7 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="model" />
     <MESSAGE value="base(beginning)" />
     <MESSAGE value="service added" />
@@ -379,6 +490,8 @@
     <MESSAGE value="Security без рабочего JWT" />
     <MESSAGE value="Добавлен JWT" />
     <MESSAGE value="Использование RabbitMq" />
-    <option name="LAST_COMMIT_MESSAGE" value="Использование RabbitMq" />
+    <MESSAGE value="Обновил docker-compose.yml" />
+    <MESSAGE value="Добавлено RestApi" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавлено RestApi" />
   </component>
 </project>

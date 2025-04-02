@@ -1,8 +1,8 @@
 package ru.kashigin.musichub.service.impls;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.kashigin.musichub.dto.SongDto;
 import ru.kashigin.musichub.model.Album;
@@ -18,6 +18,7 @@ import ru.kashigin.musichub.service.mappers.SongMapper;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -33,12 +34,24 @@ public class SongServiceImpl implements SongService {
     }
 
     @Override
+    public List<SongDto> getAllSongsApi() {
+        return songRepository.findAll().stream()
+                .map(this::convertToSongDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public Optional<Song> getSongById(Long id) {
         return songRepository.findById(id);
     }
 
     @Override
-    public Song createSong(Song song) {
+    public Optional<SongDto> getSongByIdApi(Long id) {
+        return songRepository.findById(id)
+                .map((this::convertToSongDto)); 
+    }
+    @Override
+    public void createSong(Song song) {
         if (song.getAlbum() == null || song.getAlbum().getAlbumId() == null) {
             song.setAlbum(null);
         }
@@ -46,7 +59,15 @@ public class SongServiceImpl implements SongService {
             song.setArtist(null);
         }
 
-        return songRepository.save(song);
+        songRepository.save(song);
+    }
+
+    @Override
+    public SongDto createSong(SongDto songDto) {
+        Song song = convertToSong(songDto);
+
+        Song saved = songRepository.save(song);
+        return convertToSongDto(saved);
     }
 
     @Override
@@ -66,6 +87,22 @@ public class SongServiceImpl implements SongService {
             songRepository.save(existingSong.get());
         }
         return null;
+    }
+
+    @Override
+    public SongDto updateSong(Long id, SongDto songDto) {
+        Song song = songRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Song not found"));
+
+        song.setName(songDto.getName());
+        song.setDuration(songDto.getDuration());
+        song.setRelease(songDto.getRelease());
+        song.setArtist(songDto.getArtist());
+        song.setAlbum(songDto.getAlbum());
+        song.setGenre(songDto.getGenre());
+
+        Song updated = songRepository.save(song);
+        return convertToSongDto(updated);
     }
 
     @Override
@@ -123,5 +160,10 @@ public class SongServiceImpl implements SongService {
     @Override
     public Song convertToSong(SongDto songDto) {
         return SongMapper.INSTANCE.convertToSong(songDto);
+    }
+
+    @Override
+    public SongDto convertToSongDto(Song song){
+        return SongMapper.INSTANCE.convertToSongDto(song);
     }
 }

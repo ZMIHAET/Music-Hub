@@ -1,7 +1,6 @@
 package ru.kashigin.musichub.service.impls;
 
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 import ru.kashigin.musichub.dto.GenreDto;
 import ru.kashigin.musichub.model.Genre;

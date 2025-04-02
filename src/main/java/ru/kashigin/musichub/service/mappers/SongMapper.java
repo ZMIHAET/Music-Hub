@@ -11,4 +11,5 @@ public interface SongMapper {
     SongMapper INSTANCE = Mappers.getMapper(SongMapper.class);
 
     Song convertToSong(SongDto songDto);
+    SongDto convertToSongDto(Song song);
 }

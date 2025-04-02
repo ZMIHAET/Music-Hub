@@ -11,4 +11,6 @@ public interface PersonMapper {
     PersonMapper INSTANCE = Mappers.getMapper(PersonMapper.class);
 
     Person convertToPerson(PersonDto personDto);
+
+    PersonDto convertToPersonDto(Person person);
 }

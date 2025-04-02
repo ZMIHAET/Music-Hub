@@ -11,4 +11,6 @@ public interface AlbumMapper {
     AlbumMapper INSTANCE = Mappers.getMapper(AlbumMapper.class);
 
     Album convertToAlbum(AlbumDto albumDto);
+
+    AlbumDto convertToAlbumDto(Album album);
 }

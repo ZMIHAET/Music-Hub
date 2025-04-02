@@ -12,4 +12,5 @@ public interface PlaylistMapper {
     PlaylistMapper INSTANCE = Mappers.getMapper(PlaylistMapper.class);
 
     Playlist convertToPlaylist(PlaylistDto playlistDto);
+    PlaylistDto convertToPlaylistDto(Playlist playlist);
 }

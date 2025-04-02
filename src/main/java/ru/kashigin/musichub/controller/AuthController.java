@@ -16,6 +16,7 @@ import ru.kashigin.musichub.security.JWTUtil;
 import ru.kashigin.musichub.security.PersonDetails;
 import ru.kashigin.musichub.service.PersonDetailsService;
 import ru.kashigin.musichub.service.RegistrationService;
+import ru.kashigin.musichub.service.rabbit.Message;
 import ru.kashigin.musichub.service.rabbit.RegistrationProducer;
 import ru.kashigin.musichub.util.PersonValidator;
 
@@ -48,11 +49,11 @@ public class AuthController {
         if (bindingResult.hasErrors())
             return "/auth/registration";
 
+        person.setRole("ROLE_USER");
+
         person.setRegistration(LocalDate.now()); //добавление даты регистрации
 
         registrationService.register(person);
-
-        registrationProducer.sendRegistrationMessage("User registered: " + person.getName());
 
         return "redirect:/auth/login";
     }

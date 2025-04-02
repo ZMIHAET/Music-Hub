@@ -8,10 +8,19 @@ import java.util.Optional;
 
 public interface AlbumService {
     List<Album> getAllAlbums();
+    List<AlbumDto> getAllAlbumsApi();
+
     Optional<Album> getAlbumById(Long id);
-    Album createAlbum(Album album);
-    Album updateAlbum(Long id, Album album);
+    Optional<AlbumDto> getAlbumByIdApi(Long id);
+
+    void createAlbum(Album album);
+    AlbumDto createAlbum(AlbumDto albumDto);
+
+    void updateAlbum(Long id, Album album);
+    AlbumDto updateAlbum(Long id, AlbumDto albumDto);
+
     void deleteAlbum(Long id);
     void addArtist(AlbumDto albumDto, Long artistId);
-    Album convertToAlbum(AlbumDto aLbumDto);
+    Album convertToAlbum(AlbumDto albumDto);
+    AlbumDto convertToAlbumDto(Album album);
 }

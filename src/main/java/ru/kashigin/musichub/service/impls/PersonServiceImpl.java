@@ -1,7 +1,7 @@
 package ru.kashigin.musichub.service.impls;
 
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import ru.kashigin.musichub.dto.PersonDto;
@@ -12,6 +12,7 @@ import ru.kashigin.musichub.service.mappers.PersonMapper;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -31,23 +32,53 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public Person createPerson(Person person) {
-        return personRepository.save(person);
+    public Optional<PersonDto> getPersonByIdApi(Long id) {
+        return personRepository.findById(id)
+                .map(this::convertToPersonDto);
     }
 
     @Override
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    public Person updatePerson(Long id, Person person) {
+    public void createPerson(Person person) {
+        person.setRole("ROLE_USER");
+        personRepository.save(person);
+    }
+
+    @Override
+    public PersonDto createPerson(PersonDto personDto) {
+        Person person = convertToPerson(personDto);
+        person.setRole("ROLE_USER");
+
+        Person saved = personRepository.save(person);
+        return convertToPersonDto(saved);
+    }
+
+
+    @Override
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public void updatePerson(Long id, Person person) {
         Optional<Person> existingPerson = getPersonById(id);
         if (existingPerson.isPresent()) {
             existingPerson.get().setName(person.getName());
             existingPerson.get().setEmail(person.getEmail());
             existingPerson.get().setPassword(person.getPassword());
 
-            return personRepository.save(existingPerson.get());
+            personRepository.save(existingPerson.get());
         }
-        return null;
+    }
+
+    @Override
+    public PersonDto updatePerson(Long id, PersonDto personDto) {
+        Person person = personRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Person not found"));
+
+        person.setName(personDto.getName());
+        person.setEmail(personDto.getEmail());
+        person.setPassword(personDto.getPassword());
+
+        Person updated = personRepository.save(person);
+
+        return convertToPersonDto(updated);
     }
 
     @Override
@@ -61,4 +92,17 @@ public class PersonServiceImpl implements PersonService {
     public Person convertToPerson(PersonDto personDto) {
         return PersonMapper.INSTANCE.convertToPerson(personDto);
     }
+
+    @Override
+    public PersonDto convertToPersonDto(Person person) {
+        return PersonMapper.INSTANCE.convertToPersonDto(person);
+    }
+
+    @Override
+    public List<PersonDto> getAllPersonsApi() {
+        return personRepository.findAll().stream()
+                .map(this::convertToPersonDto)
+                .collect(Collectors.toList());
+    }
+
 }

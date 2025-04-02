@@ -78,7 +78,7 @@ public class AlbumServiceImpl implements AlbumService {
     @Override
     public AlbumDto updateAlbum(Long id, AlbumDto albumDto) {
         Album album = albumRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Entity not found"));
+                .orElseThrow(() -> new EntityNotFoundException("Album not found"));
 
         album.setName(albumDto.getName());
         album.setRelease(albumDto.getRelease());

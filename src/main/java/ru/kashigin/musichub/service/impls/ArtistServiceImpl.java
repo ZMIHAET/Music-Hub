@@ -5,6 +5,7 @@ import io.minio.PutObjectArgs;
 import io.minio.RemoveObjectArgs;
 
 import io.minio.errors.MinioException;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,8 +23,7 @@ import java.util.Objects;
 
 import java.util.Optional;
 import java.util.UUID;
-
-
+import java.util.stream.Collectors;
 
 
 @Service
@@ -42,12 +42,25 @@ public class ArtistServiceImpl implements ArtistService {
     }
 
     @Override
+    public List<ArtistDto> getAllArtistsApi() {
+        return artistRepository.findAll().stream()
+                .map(this::convertToArtistDto)
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public Optional<Artist> getArtistById(Long id) {
         return artistRepository.findById(id);
     }
 
     @Override
-    public Artist createArtist(Artist artist, MultipartFile photo) {
+    public Optional<ArtistDto> getArtistByIdApi(Long id) {
+        return artistRepository.findById(id)
+                .map(this::convertToArtistDto);
+    }
+
+    @Override
+    public void createArtist(Artist artist, MultipartFile photo) {
         if (photo.isEmpty())
             throw new RuntimeException("Photo was not upload");
         String photoName = UUID.randomUUID() + "-" + Objects.requireNonNull(photo.getOriginalFilename());
@@ -75,11 +88,19 @@ public class ArtistServiceImpl implements ArtistService {
 
 
         artist.setPhoto(photoName);
-        return artistRepository.save(artist);
+        artistRepository.save(artist);
     }
 
     @Override
-    public Artist updateArtist(Long id, Artist artist, MultipartFile photo) {
+    public ArtistDto createArtist(ArtistDto dto) {
+        Artist artist = convertToArtist(dto);
+        Artist saved = artistRepository.save(artist);
+
+        return convertToArtistDto(saved);
+    }
+
+    @Override
+    public void updateArtist(Long id, Artist artist, MultipartFile photo) {
         Optional<Artist> existingArtist = getArtistById(id);
         if (existingArtist.isPresent()) {
             existingArtist.get().setName(artist.getName());
@@ -122,10 +143,26 @@ public class ArtistServiceImpl implements ArtistService {
                 }
             }
 
-            return artistRepository.save(existingArtist.get());
+            artistRepository.save(existingArtist.get());
         }
 
-        return null;
+    }
+
+    @Override
+    public ArtistDto updateArtist(Long id, ArtistDto dto) {
+        Artist artist = artistRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Artist not found"));
+
+        artist.setName(dto.getName());
+        artist.setBio(dto.getBio());
+        artist.setSongs(dto.getSongs());
+        artist.setPhoto(dto.getPhoto());
+        artist.setAlbums(dto.getAlbums());
+
+        Artist updated = artistRepository.save(artist);
+
+        return convertToArtistDto(updated);
+
     }
 
     @Override
@@ -137,4 +174,11 @@ public class ArtistServiceImpl implements ArtistService {
     public Artist convertToArtist(ArtistDto artistDto) {
         return ArtistMapper.INSTANCE.convertToArtist(artistDto);
     }
+
+    @Override
+    public ArtistDto convertToArtistDto(Artist artist) {
+        return ArtistMapper.INSTANCE.convertToArtistDto(artist);
+    }
+
+
 }

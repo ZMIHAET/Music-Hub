@@ -9,9 +9,18 @@ import java.util.Optional;
 
 public interface ArtistService {
     List<Artist> getAllArtists();
+    List<ArtistDto> getAllArtistsApi();
+
     Optional<Artist> getArtistById(Long id);
-    Artist createArtist(Artist artist, MultipartFile photo);
-    Artist updateArtist(Long id, Artist artist, MultipartFile photo);
+    Optional<ArtistDto> getArtistByIdApi(Long id);
+
+    void createArtist(Artist artist, MultipartFile photo);
+    ArtistDto createArtist(ArtistDto dto);
+
+    void updateArtist(Long id, Artist artist, MultipartFile photo);
+    ArtistDto updateArtist(Long id, ArtistDto dto);
+
     void deleteArtist(Long id);
     Artist convertToArtist(ArtistDto artistDto);
+    ArtistDto convertToArtistDto(Artist artist);
 }

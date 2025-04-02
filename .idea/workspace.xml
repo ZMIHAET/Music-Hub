@@ -5,52 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="26abebd0-3960-4724-96e6-977a9ad61c47" name="Changes" comment="Добавлено RestApi">
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/api/AlbumController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/api/PersonController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/api/PlaylistController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/api/SongController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/DateConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/DateMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/java/ru/kashigin/MusicHubPA/MusicHubPAApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/java/ru/kashigin/MusicHubPA/config/RabbitMQConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/java/ru/kashigin/MusicHubPA/service/rabbit/DateMessage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/java/ru/kashigin/MusicHubPA/service/rabbit/Message.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/java/ru/kashigin/MusicHubPA/service/rabbit/RegistrationConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/resources/application.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/webapp/WEB-INF/applicationContextMVC.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../MusicHubPA/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/api/ArtistController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/config/RabbitMQConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/config/RabbitMQConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/repository/PlaylistRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/repository/PlaylistRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/AlbumService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/AlbumService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/PersonService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/PersonService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/PlaylistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/PlaylistService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/SongService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/SongService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/ArtistService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/ArtistService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/AlbumServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/AlbumServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/ArtistServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/ArtistServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/GenreServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/GenreServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/PersonServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/PersonServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/PlaylistServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/PlaylistServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/RegistrationServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/RegistrationServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/SongServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/impls/SongServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/AlbumMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/AlbumMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/PersonMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/PersonMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/PlaylistMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/PlaylistMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/SongMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/SongMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/RegistrationConsumer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/RegistrationProducer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/rabbit/RegistrationProducer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/ArtistMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ru/kashigin/musichub/service/mappers/ArtistMapper.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +28,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../MusicHubPA" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
@@ -279,7 +239,7 @@
       <workItem from="1743072323482" duration="5776000" />
       <workItem from="1743259313153" duration="7656000" />
       <workItem from="1743438895282" duration="5001000" />
-      <workItem from="1743607555198" duration="319000" />
+      <workItem from="1743607555198" duration="2862000" />
     </task>
     <task id="LOCAL-00001" summary="model">
       <option name="closed" value="true" />
@@ -441,7 +401,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732566268113</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Добавлено RestApi">
+      <option name="closed" value="true" />
+      <created>1743608123915</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1743608123915</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

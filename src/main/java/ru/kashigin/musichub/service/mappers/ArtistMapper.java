@@ -11,4 +11,6 @@ public interface ArtistMapper {
     ArtistMapper INSTANCE = Mappers.getMapper(ArtistMapper.class);
 
     Artist convertToArtist(ArtistDto artistDto);
+
+    ArtistDto convertToArtistDto(Artist artist);
 }
